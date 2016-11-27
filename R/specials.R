@@ -15,3 +15,6 @@
     !intrval(x, interval, "[)")
 "%)(%" <- function(x, interval)
     !intrval(x, interval, "[]")
+
+"%[o]%" <- function(interval1, interval2)
+    ovrlap(interval1, interval2)
