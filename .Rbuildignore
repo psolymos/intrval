@@ -1,0 +1,8 @@
+extras
+\.md
+.git*
+.DS_Store
+.*~
+.travis.yml
+^.*\.Rproj$
+^\.Rproj\.user$
