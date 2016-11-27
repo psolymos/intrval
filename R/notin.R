@@ -1,1 +1,1 @@
-"%!in%" <- function(x, table) !(match(x, table, nomatch = 0) > 0)
+"%notin%" <- function(x, table) !(match(x, table, nomatch = 0) > 0)
