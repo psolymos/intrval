@@ -28,6 +28,8 @@ Peter Solymos <solymos@ualberta.ca>
 }
 \seealso{
 All the opposite of what is written for \code{\link{\%in\%}}.
+
+See relational operators for intervals: \code{\link{intrval}}
 }
 \examples{
 1:10 \%notin\% c(1,3,5,9)

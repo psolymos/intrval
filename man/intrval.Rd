@@ -72,6 +72,8 @@ Peter Solymos <solymos@ualberta.ca>
 See help page for relational operators: \code{\link{Comparison}}.
 
 See \code{\link{factor}} for the behaviour with factor arguments.
+See also \code{\link{\%notin\%}} for negated value matching
+useful for factors too.
 }
 \examples{
 ## simple case with integers
