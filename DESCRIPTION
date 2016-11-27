@@ -10,7 +10,7 @@ Description: Function for evaluating if values
   using a `x %()% c(a, b)` style notation for comparing 
   values of x with (a, b) interval to get a < x < b evaluated.
   Interval endpoint can be open (`(`, `)`) or closed (`[` or `]`)
-  including all 16 combinations.
+  including 8 combinations.
 License: GPL-2
 URL: https://github.com/psolymos/intrval
 BugReports: https://github.com/psolymos/intrval/issues

@@ -6,7 +6,7 @@ library(intrval)
 
 ## run examples with \dontrun sections
 
-help_pages <- c("intrval", "plot_intrval")
+help_pages <- c("intrval")
 
 for (i in help_pages) {
     cat("\n\n---------- intrval example:", i, "----------\n\n")
@@ -55,6 +55,11 @@ suppressWarnings(test_fun("as.factor(c('a','b','c','d','e'))", "c('b','d')",
     expect_NA=TRUE))
 ## date
 test_fun("as.Date(1:5,origin='2000-01-01')", "as.Date(c(2,4),origin='2000-01-01')")
+## logical
+c(TRUE, FALSE) %[]% c(TRUE, TRUE)
+c(TRUE, FALSE) %[]% c(FALSE, FALSE)
+c(TRUE, FALSE) %[]% c(TRUE, FALSE)
+c(TRUE, FALSE) %[]% c(FALSE, TRUE)
 
 ## interval formats
 x <- rep(4, 5)
@@ -64,3 +69,13 @@ cbind(x=x, a=a, b=b)
 x %[]% cbind(a, b)
 x %[]% list(a, b)
 
+NULL %[]% c(1,2)
+NULL %[]% NULL
+NULL %[]% list(NULL, NULL)
+
+NA %[]% c(1,2)
+NA %[]% c(NA,NA)
+1:5 %[]% c(2,4)
+1:5 %[]% c(NA,4)
+1:5 %[]% c(2,NA)
+c(1:5, NA) %[]% c(2,4)

@@ -29,32 +29,3 @@ function(x, interval, type)
         ")" = x < b)
     A & B
 }
-intrval2 <-
-function(x, interval, type)
-{
-    type_a <- match.arg(substr(type, 1L, 1L), c("[", "]", "(", ")"))
-    type_b <- match.arg(substr(type, 2L, 2L), c("[", "]", "(", ")"))
-    if (!is.null(dim(interval))) {
-        a <- interval[,1L]
-        b <- interval[,2L]
-    } else {
-        if (is.list(interval)) {
-            a <- interval[[1L]]
-            b <- interval[[2L]]
-        } else {
-            a <- interval[1L]
-            b <- interval[2L]
-        }
-    }
-    A <- switch(type_a,
-        "[" = x >= a,
-        "]" = x <= a,
-        "(" = x > a,
-        ")" = x < a)
-    B <- switch(type_b,
-        "[" = x >= b,
-        "]" = x <= b,
-        "(" = x > b,
-        ")" = x < b)
-    cbind(A, B)
-}
