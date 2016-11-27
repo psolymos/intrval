@@ -17,6 +17,8 @@
 \alias{\%(>]\%}
 \alias{\%(>)\%}
 \alias{\%[o]\%}
+\alias{\%[<o]\%}
+\alias{\%[o>]\%}
 \alias{intrval_types}
 \alias{print_intrval}
 \alias{plot_intrval}
@@ -47,6 +49,10 @@ x \%[>]\% interval
 x \%[>)\% interval
 x \%(>]\% interval
 x \%(>)\% interval
+
+interval1 \%[o]\% interval2
+interval1 \%[<o]\% interval2
+interval1 \%[o>]\% interval2
 
 intrval_types(type = NULL)
 print_intrval(type = NULL)
@@ -210,15 +216,25 @@ cbind(rep(2,5), rep(3,5)) %[o]% list(0:4, 1:5)
 
 ## directional relations
 
-2 %[<]% c(2,3)
-2 %[<)% c(2,3)
-2 %(<]% c(2,3)
-2 %(<)% c(2,3)
-
+1:4 %[]% c(2,3)
 1:4 %[>]% c(2,3)
+1:4 %[<]% c(2,3)
+
+1:4 %[)% c(2,3)
 1:4 %[>)% c(2,3)
+1:4 %[<)% c(2,3)
+
+1:4 %(]% c(2,3)
 1:4 %(>]% c(2,3)
+1:4 %(<]% c(2,3)
+
+1:4 %()% c(2,3)
 1:4 %(>)% c(2,3)
+1:4 %(<)% c(2,3)
+
+cbind(rep(3,5),rep(4,5)) %[o]% cbind(1:5, 2:6)
+cbind(rep(3,5),rep(4,5)) %[<o]% cbind(1:5, 2:6)
+cbind(rep(3,5),rep(4,5)) %[o>]% cbind(1:5, 2:6)
 
 }
 \keyword{manip}
