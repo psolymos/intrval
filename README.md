@@ -85,12 +85,6 @@ as.Date(1:5,origin='2000-01-01') %[]% as.Date(c(2,4),origin='2000-01-01')
 
 ## Versions
 
-Install CRAN version as:
-
-```R
-install.packages("intrval")
-```
-
 Install development version from GitHub:
 
 ```R
