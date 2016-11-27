@@ -29,28 +29,3 @@ function(type=NULL)
     par(op)
     invisible(tab)
 }
-
-intrval_types <- function(type=NULL) {
-    tab <- matrix(c(
-        "%[]%", "---x===x---", "x >= a & x <= b",
-        "%[)%", "---x===o---", "x >= a & x <  b",
-        "%(]%", "---o===x---", "x >  a & x <= b",
-        "%()%", "---o===o---", "x >  a & x <  b",
-
-        "%][%", "===x---x===", "x <= a & x >= b",
-        "%](%", "===x---o===", "x <= a & x >  b",
-        "%)[%", "===o---x===", "x <  a & x >= b",
-        "%)(%", "===o---o===", "x <  a & x >  b"),
-        8, 3, byrow=TRUE)
-    colnames(tab) <- c("Operator", "Visual", "Meaning")
-    rownames(tab) <- substr(tab[,1L], 2, 3)
-    if (!is.null(type))
-        tab <- tab[type,,drop=FALSE]
-    tab
-}
-
-print_intrval <- function(type=NULL) {
-    tab <- intrval_types(type=type)
-    print(as.data.frame(tab), print.gap=4)
-    invisible(tab)
-}
