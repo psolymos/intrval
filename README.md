@@ -16,7 +16,7 @@ including 8 different combinations.
 ![](https://github.com/psolymos/intrval/raw/master/extras/intrval.png)
 
 Values of `x` are compared to interval endpoints.
-Endpoints can be defined as a vector with two values: these values will be compared as a single interval with each value in \code{x}.
+Endpoints can be defined as a vector with two values: these values will be compared as a single interval with each value in `x`.
 If endpoints are stored in a matrix-like object or a list,
 comparisons are made element-wise. If lengths do not match, shorter objects are recycled. Return values are logicals.
 
