@@ -1,2 +1,6 @@
 export("intrval",
-    "%[]%")
+    "%[]%", "%[)%", "%(]%", "%()%",
+    "%][%", "%](%", "%)[%", "%)(%",
+    "intrval_types", "print_intrval", "plot_intrval")
+
+importFrom("graphics", "lines", "par", "plot", "points", "text")
