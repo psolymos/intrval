@@ -17,7 +17,7 @@ for (i in help_pages) {
 ## testing
 
 test_fun <- function(xchr, abchr, printout=TRUE, expect_NA=FALSE) {
-    tab <- intrval_types(type=type)
+    tab <- intrval_types(type=NULL)
     ex <- tab[,3]
     hit <- cbind(
         substr(tab[,2], 1, 1) == "=",
