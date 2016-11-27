@@ -13,7 +13,7 @@ values of _x_ with (_a_, _b_) interval to get _a_ < _x_ < _b_ evaluated.
 Interval endpoints can be open (`(`, `)`) or closed (`[`, `]`)
 including 8 different combinations.
 
-![](https://github.com/psolymos/intrwal/raw/master/extras/intrval.png)
+![](https://github.com/psolymos/intrval/raw/master/extras/intrval.png)
 
 ## Versions
 
