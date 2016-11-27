@@ -1,9 +1,10 @@
-export("intrval",
+export(
     "%[]%", "%[)%", "%(]%", "%()%",
     "%][%", "%](%", "%)[%", "%)(%",
+    "%[<]%", "%[<)%", "%(<]%", "%(<)%",
+    "%[>]%", "%[>)%", "%(>]%", "%(>)%",
     "intrval_types", "print_intrval", "plot_intrval",
     "%notin%",
-    "ovrlap",
     "%[o]%")
 
 importFrom("graphics", "lines", "par", "plot", "points", "text")

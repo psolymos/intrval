@@ -1,5 +1,5 @@
 \name{intrval}
-\alias{intrval}
+\name{intrval-package}
 \alias{\%[]\%}
 \alias{\%[)\%}
 \alias{\%(]\%}
@@ -8,11 +8,18 @@
 \alias{\%](\%}
 \alias{\%)[\%}
 \alias{\%)(\%}
+\alias{\%[<]\%}
+\alias{\%[<)\%}
+\alias{\%(<]\%}
+\alias{\%(<)\%}
+\alias{\%[>]\%}
+\alias{\%[>)\%}
+\alias{\%(>]\%}
+\alias{\%(>)\%}
+\alias{\%[o]\%}
 \alias{intrval_types}
 \alias{print_intrval}
 \alias{plot_intrval}
-\alias{ovrlap}
-\alias{\%[o]\%}
 \title{
 Relational Operators for Intervals
 }
@@ -31,12 +38,19 @@ x \%](\% interval
 x \%)[\% interval
 x \%)(\% interval
 
+x \%[<]\% interval
+x \%[<)\% interval
+x \%(<]\% interval
+x \%(<)\% interval
+
+x \%[>]\% interval
+x \%[>)\% interval
+x \%(>]\% interval
+x \%(>)\% interval
+
 intrval_types(type = NULL)
 print_intrval(type = NULL)
 plot_intrval(type = NULL)
-
-intrval(x, interval, type)
-ovrlap(interval1, interval2)
 }
 \arguments{
   \item{x}{
@@ -50,7 +64,7 @@ vector, 2-column matrix, list, or \code{NULL}: the interval end points
 of two (sets) of closed intervals to compare.
 }
   \item{type}{
-character, one of
+character, any of
 \code{"[]"}, \code{"[)"}, \code{"(]"}, \code{"()"},
 \code{"]["}, \code{"]("}, \code{")["}, \code{")("}.
 }
@@ -193,6 +207,19 @@ data.frame(a=0:4, b=1:5) %[o]% c(2:3)
 
 list(0:4, 1:5) %[o]% cbind(rep(2,5), rep(3,5))
 cbind(rep(2,5), rep(3,5)) %[o]% list(0:4, 1:5)
+
+## directional relations
+
+2 %[<]% c(2,3)
+2 %[<)% c(2,3)
+2 %(<]% c(2,3)
+2 %(<)% c(2,3)
+
+1:4 %[>]% c(2,3)
+1:4 %[>)% c(2,3)
+1:4 %(>]% c(2,3)
+1:4 %(>)% c(2,3)
+
 }
 \keyword{manip}
 \keyword{logic}
