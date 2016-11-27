@@ -6,12 +6,14 @@
 [![Windows build status](https://ci.appveyor.com/api/projects/status/a34rcucks4jn7niq?svg=true)](https://ci.appveyor.com/project/psolymos/intrval)
 [![Code coverage status](https://codecov.io/gh/psolymos/intrval/branch/master/graph/badge.svg)](https://codecov.io/gh/psolymos/intrval)
 
-Function for evaluating if values 
+Functions for evaluating if values 
 of vectors are within intervals
 using a `x %()% c(a, b)` style notation for comparing 
-values of x with (a, b) interval to get a < x < b evaluated.
-Interval endpoint can be open (`(`, `)`) or closed (`[` or `]`)
-including all 16 combinations.
+values of _x_ with (_a_, _b_) interval to get _a_ < _x_ < _b_ evaluated.
+Interval endpoints can be open (`(`, `)`) or closed (`[`, `]`)
+including 8 different combinations.
+
+![](https://github.com/psolymos/intrwal/raw/master/extras/intrval.png)
 
 ## Versions
 
