@@ -52,6 +52,10 @@ Values of \code{x} are compared to \code{interval} endpoints.
 The \code{type} argument or the specification of the special function
 determines the open (\code{(} and \code{)}) or closed (\code{[]} and \code{]})
 endpoints and relations.
+
+Endpoints can be defined as a vector with two values: these values will be compared as a single interval with each value in \code{x}.
+If endpoints are stored in a matrix-like object or a list,
+comparisons are made element-wise. If lengths do not match, shorter objects are recycled.
 }
 \value{
 A logical vector, indicating if \code{x} is in the interval specified.
@@ -127,6 +131,9 @@ as.Date(1:5,origin='2000-01-01') %[]% as.Date(c(2,4),origin='2000-01-01')
 ## helper functions
 print_intrval()
 plot_intrval()
+
+## recycling values
+1:10 %[]% list(1:5, 6)
 }
 \keyword{manip}
 \keyword{logic}
