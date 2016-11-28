@@ -1,5 +1,5 @@
 \name{intrval}
-\name{intrval-package}
+\alias{intrval-package}
 \alias{\%[]\%}
 \alias{\%[)\%}
 \alias{\%(]\%}
