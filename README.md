@@ -22,6 +22,41 @@ comparisons are made element-wise. If lengths do not match, shorter objects are 
 
 
 ```R
+## Annette Dobson (1990) "An Introduction to Generalized Linear Models".
+## Page 9: Plant Weight Data.
+ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
+trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
+group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
+weight <- c(ctl, trt)
+
+lm.D9 <- lm(weight ~ group)
+## compare 95\% confidence intervals with 0
+(CI.D9 <- confint(lm.D9))
+#                2.5 %    97.5 %
+# (Intercept)  4.56934 5.4946602
+# groupTrt    -1.02530 0.2833003
+0 %[]% CI.D9
+# (Intercept)    groupTrt 
+#       FALSE        TRUE 
+
+lm.D90 <- lm(weight ~ group - 1) # omitting intercept
+## compare 95\% confidence of the 2 groups to each other
+(CI.D90 <- confint(lm.D90))
+#            2.5 %  97.5 %
+# groupCtl 4.56934 5.49466
+# groupTrt 4.19834 5.12366
+CI.D90[1,] %[o]% CI.D90[2,]
+# 2.5 % 
+#  TRUE 
+
+DATE <- as.Date(c("2000-01-01","2000-02-01", "2000-03-31"))
+DATE %[<]% as.Date(c("2000-01-151", "2000-03-15"))
+# [1]  TRUE FALSE FALSE
+DATE %[]% as.Date(c("2000-01-151", "2000-03-15"))
+# [1] FALSE  TRUE FALSE
+DATE %[>]% as.Date(c("2000-01-151", "2000-03-15"))
+# [1] FALSE FALSE  TRUE
+
 ## simple case with integers
 1:5 %[]% c(2,4)
 # [1] FALSE  TRUE  TRUE  TRUE FALSE
@@ -81,6 +116,14 @@ as.factor(c('a','b','c','d','e')) %[]% c('b','d')
 ## dates
 as.Date(1:5,origin='2000-01-01') %[]% as.Date(c(2,4),origin='2000-01-01')
 # [1] FALSE  TRUE  TRUE  TRUE FALSE
+
+## testing overlap
+cbind(rep(3,5),rep(4,5)) %[o]% cbind(1:5, 2:6)
+# [1] FALSE  TRUE  TRUE  TRUE FALSE
+cbind(rep(3,5),rep(4,5)) %[<o]% cbind(1:5, 2:6)
+# [1] FALSE FALSE FALSE FALSE  TRUE
+cbind(rep(3,5),rep(4,5)) %[o>]% cbind(1:5, 2:6)
+# [1]  TRUE FALSE FALSE FALSE FALSE
 ```
 
 ## Versions
