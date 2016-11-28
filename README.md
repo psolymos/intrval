@@ -30,7 +30,7 @@ group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
 weight <- c(ctl, trt)
 
 lm.D9 <- lm(weight ~ group)
-## compare 95\% confidence intervals with 0
+## compare 95% confidence intervals with 0
 (CI.D9 <- confint(lm.D9))
 #                2.5 %    97.5 %
 # (Intercept)  4.56934 5.4946602
@@ -40,7 +40,7 @@ lm.D9 <- lm(weight ~ group)
 #       FALSE        TRUE 
 
 lm.D90 <- lm(weight ~ group - 1) # omitting intercept
-## compare 95\% confidence of the 2 groups to each other
+## compare 95% confidence of the 2 groups to each other
 (CI.D90 <- confint(lm.D90))
 #            2.5 %  97.5 %
 # groupCtl 4.56934 5.49466
