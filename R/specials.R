@@ -8,15 +8,15 @@
 "%()%" <- function(x, interval)
     .intrval(x, interval, "()")
 
-## disjoint interval relations
-"%][%" <- function(x, interval)
-    !.intrval(x, interval, "()")
-"%](%" <- function(x, interval)
-    !.intrval(x, interval, "(]")
-"%)[%" <- function(x, interval)
-    !.intrval(x, interval, "[)")
+## disjoint interval relations: negation
 "%)(%" <- function(x, interval)
     !.intrval(x, interval, "[]")
+"%)[%" <- function(x, interval)
+    !.intrval(x, interval, "[)")
+"%](%" <- function(x, interval)
+    !.intrval(x, interval, "(]")
+"%][%" <- function(x, interval)
+    !.intrval(x, interval, "()")
 
 ## directional relations for compact intervals: less than
 "%[<]%" <- function(x, interval)
@@ -41,6 +41,10 @@
 ## 2 interval overlap
 "%[o]%" <- function(interval1, interval2)
     .intrval2(interval1, interval2)
+
+## 2 interval overlap: negation
+"%)o(%" <- function(interval1, interval2)
+    !.intrval2(interval1, interval2)
 
 ## 2 interval, directional: less
 "%[<o]%" <- function(interval1, interval2)

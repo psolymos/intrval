@@ -17,6 +17,7 @@
 \alias{\%(>]\%}
 \alias{\%(>)\%}
 \alias{\%[o]\%}
+\alias{\%)o(\%}
 \alias{\%[<o]\%}
 \alias{\%[o>]\%}
 \alias{intrval_types}
@@ -31,26 +32,27 @@ or if intervals overlap or not.
 }
 \usage{
 x \%[]\% interval
-x \%[)\% interval
-x \%(]\% interval
-x \%()\% interval
-
-x \%][\% interval
-x \%](\% interval
-x \%)[\% interval
 x \%)(\% interval
-
 x \%[<]\% interval
-x \%[<)\% interval
-x \%(<]\% interval
-x \%(<)\% interval
-
 x \%[>]\% interval
+
+x \%[)\% interval
+x \%)[\% interval
+x \%[<)\% interval
 x \%[>)\% interval
+
+x \%(]\% interval
+x \%](\% interval
+x \%(<]\% interval
 x \%(>]\% interval
+
+x \%()\% interval
+x \%][\% interval
+x \%(<)\% interval
 x \%(>)\% interval
 
 interval1 \%[o]\% interval2
+interval1 \%)o(\% interval2
 interval1 \%[<o]\% interval2
 interval1 \%[o>]\% interval2
 
