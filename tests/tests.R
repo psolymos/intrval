@@ -6,7 +6,7 @@ library(intrval)
 
 ## run examples with \dontrun sections
 
-help_pages <- c("%[]%", "%!in%")
+help_pages <- c("%[]%", "%notin%")
 
 for (i in help_pages) {
     cat("\n\n---------- intrval example:", i, "----------\n\n")

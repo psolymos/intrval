@@ -10,16 +10,50 @@ Functions for evaluating if values
 of vectors are within intervals
 using a `x %()% c(a, b)` style notation for comparing 
 values of _x_ with (_a_, _b_) interval to get _a_ < _x_ < _b_ evaluated.
-Interval endpoints can be open (`(`, `)`) or closed (`[`, `]`)
-including 8 different combinations.
+Interval endpoints can be open (`(`, `)`) or closed (`[`, `]`).
 
 ![](https://github.com/psolymos/intrval/raw/master/extras/intrval.png)
 
-Values of `x` are compared to interval endpoints.
-Endpoints can be defined as a vector with two values: these values will be compared as a single interval with each value in `x`.
+## Value-to-interval relations
+
+Values of `x` are compared to interval endpoints `a` and `b` (`a <= b`).
+Endpoints can be defined as a vector with two values (`c(a, b)`): these values will be compared as a single interval with each value in `x`.
 If endpoints are stored in a matrix-like object or a list,
 comparisons are made element-wise. If lengths do not match, shorter objects are recycled. Return values are logicals.
 
+These value-to-interval operators work for numeric (integer, real) and ordered vectors, and object types which are measured at least on ordinal scale (e.g. dates).
+
+### Closed and open intervals
+
+The following special operators are used to indicate closed (`[`, `]`) or open (`(`, `)`) interval endpoints: 
+
+Operator | Expression       | Condition
+---------|------------------|-------------------
+ `%[]%`  | `x %[]% c(a, b)` | `x >= a & x <= b`
+ `%[)%`  | `x %[)% c(a, b)` | `x >= a & x < b`
+ `%(]%`  | `x %(]% c(a, b)` | `x > a & x <= b`
+ `%()%`  | `x %()% c(a, b)` | `x > a & x < b`
+
+### Negation and directional relations
+
+Eqal     | Not equal | Less than | Greater than
+---------|-----------|-----------|----------------
+ `%[]%`  | `%)(%`    | `%[<]%`   | `%[>]%` 
+ `%[)%`  | `%)[%`    | `%[<)%`   | `%[>)%` 
+ `%(]%`  | `%](%`    | `%(<]%`   | `%(>]%` 
+ `%()%`  | `%][%`    | `%(<)%`   | `%(>)%` 
+
+## Interval-to-interval relations
+
+The overlap or two closed intervals, [`a1`, `b1`] and [`a2`, `b2`], 
+is evaluated by the `%[o]%` operator. `%)o(%` is used for the negation,
+directional evaluation is done via the operators `%[<o]%` and `%[o>]%`.
+
+## Operators for discrete variables
+
+The previous operators will return `NA` for unordered factors.
+Set overlap can be evaluated by the base `%in%` operator and its negation
+`%notin%`.
 
 ```R
 ## Annette Dobson (1990) "An Introduction to Generalized Linear Models".
