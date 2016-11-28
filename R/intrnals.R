@@ -61,7 +61,7 @@ function(x, interval, type)
 .greatrthan <-
 function(x, interval, type)
 {
-    !.intrval(x, interval, "()") & !.lessthan(x, interval, "()")
+    !.intrval(x, interval, "()") & !.lssthan(x, interval, "()")
 }
 
 .intrval2 <-
