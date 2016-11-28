@@ -127,6 +127,11 @@ lm.D90 <- lm(weight ~ group - 1) # omitting intercept
 (CI.D90 <- confint(lm.D90))
 CI.D90[1,] %[o]% CI.D90[2,]
 
+DATE <- as.Date(c("2000-01-01","2000-02-01", "2000-03-31"))
+DATE %[<]% as.Date(c("2000-01-151", "2000-03-15"))
+DATE %[]% as.Date(c("2000-01-151", "2000-03-15"))
+DATE %[>]% as.Date(c("2000-01-151", "2000-03-15"))
+
 ## --- not so motivating but still useful examples ---
 
 ## simple case with integers
