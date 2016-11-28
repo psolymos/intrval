@@ -190,3 +190,8 @@ cbind(rep(3,5),rep(4,5)) %[o]% cbind(1:5, 2:6)
 cbind(rep(3,5),rep(4,5)) %)o(% cbind(1:5, 2:6)
 cbind(rep(3,5),rep(4,5)) %[<o]% cbind(1:5, 2:6)
 cbind(rep(3,5),rep(4,5)) %[o>]% cbind(1:5, 2:6)
+
+## ensuring that a <= b, a1 <= b1, a2 <= b2
+stopifnot(identical(1:5 %[)% c(2,4), 1:5 %[)% c(4,2)))
+stopifnot(identical(c(1,3) %[o]% c(2,4), c(3,1) %[o]% c(4,2)))
+
