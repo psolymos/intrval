@@ -6,9 +6,9 @@
 [![Windows build status](https://ci.appveyor.com/api/projects/status/a34rcucks4jn7niq?svg=true)](https://ci.appveyor.com/project/psolymos/intrval)
 [![Code coverage status](https://codecov.io/gh/psolymos/intrval/branch/master/graph/badge.svg)](https://codecov.io/gh/psolymos/intrval)
 
-Functions for evaluating if values 
+Functions for evaluating if values
 of vectors are within intervals
-using a `x %()% c(a, b)` style notation for comparing 
+using a `x %()% c(a, b)` style notation for comparing
 values of _x_ with (_a_, _b_) interval to get _a_ < _x_ < _b_ evaluated.
 Interval endpoints can be open (`(`, `)`) or closed (`[`, `]`).
 
@@ -25,7 +25,7 @@ These value-to-interval operators work for numeric (integer, real) and ordered v
 
 ### Closed and open intervals
 
-The following special operators are used to indicate closed (`[`, `]`) or open (`(`, `)`) interval endpoints: 
+The following special operators are used to indicate closed (`[`, `]`) or open (`(`, `)`) interval endpoints:
 
 Operator | Expression       | Condition
 ---------|------------------|-------------------
@@ -38,14 +38,14 @@ Operator | Expression       | Condition
 
 Eqal     | Not equal | Less than | Greater than
 ---------|-----------|-----------|----------------
- `%[]%`  | `%)(%`    | `%[<]%`   | `%[>]%` 
- `%[)%`  | `%)[%`    | `%[<)%`   | `%[>)%` 
- `%(]%`  | `%](%`    | `%(<]%`   | `%(>]%` 
- `%()%`  | `%][%`    | `%(<)%`   | `%(>)%` 
+ `%[]%`  | `%)(%`    | `%[<]%`   | `%[>]%`
+ `%[)%`  | `%)[%`    | `%[<)%`   | `%[>)%`
+ `%(]%`  | `%](%`    | `%(<]%`   | `%(>]%`
+ `%()%`  | `%][%`    | `%(<)%`   | `%(>)%`
 
 ## Interval-to-interval relations
 
-The overlap or two closed intervals, [`a1`, `b1`] and [`a2`, `b2`], 
+The overlap of two closed intervals, [`a1`, `b1`] and [`a2`, `b2`],
 is evaluated by the `%[o]%` operator. `%)o(%` is used for the negation,
 directional evaluation is done via the operators `%[<o]%` and `%[o>]%`.
 
@@ -70,8 +70,8 @@ lm.D9 <- lm(weight ~ group)
 # (Intercept)  4.56934 5.4946602
 # groupTrt    -1.02530 0.2833003
 0 %[]% CI.D9
-# (Intercept)    groupTrt 
-#       FALSE        TRUE 
+# (Intercept)    groupTrt
+#       FALSE        TRUE
 
 lm.D90 <- lm(weight ~ group - 1) # omitting intercept
 ## compare 95% confidence of the 2 groups to each other
@@ -80,8 +80,8 @@ lm.D90 <- lm(weight ~ group - 1) # omitting intercept
 # groupCtl 4.56934 5.49466
 # groupTrt 4.19834 5.12366
 CI.D90[1,] %[o]% CI.D90[2,]
-# 2.5 % 
-#  TRUE 
+# 2.5 %
+#  TRUE
 
 DATE <- as.Date(c("2000-01-01","2000-02-01", "2000-03-31"))
 DATE %[<]% as.Date(c("2000-01-151", "2000-03-15"))
