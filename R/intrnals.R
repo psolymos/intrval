@@ -57,7 +57,7 @@ function(x, interval, type)
 .greatrthan <-
 function(x, interval, type)
 {
-    !.intrval(x, interval, "()") & !.lssthan(x, interval, "()")
+    !.intrval(x, interval, type) & !.lssthan(x, interval, type)
 }
 
 .intrval2 <-

@@ -28,7 +28,7 @@ test_fun <- function(xchr, abchr, printout=TRUE, expect_NA=FALSE) {
     for (i in seq_len(nrow(tab))) {
         xpt <- hit[i,]
         got <- eval(parse(text=
-            paste0("(", xchr, ") %", names(ex)[i], "% (", abchr, ")")
+            paste0("(", xchr, ") ", names(ex)[i], " (", abchr, ")")
         ))
         if (printout) {
             cat("\n", rownames(tab)[i], "\n")
@@ -37,6 +37,8 @@ test_fun <- function(xchr, abchr, printout=TRUE, expect_NA=FALSE) {
         }
         allOK <- if (expect_NA)
             all(is.na(got)) else all(xpt == got)
+#        if (!allOK)
+#            cat("----------------------------------problem", i, "\n")
         stopifnot(allOK)
     }
     invisible(NULL)
