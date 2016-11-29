@@ -188,10 +188,12 @@ cbind(rep(2,5), rep(3,5)) %[o]% list(0:4, 1:5)
 1:4 %(>)% c(2,3)
 1:4 %(<)% c(2,3)
 
-cbind(rep(3,5),rep(4,5)) %[o]% cbind(1:5, 2:6)
-cbind(rep(3,5),rep(4,5)) %)o(% cbind(1:5, 2:6)
-cbind(rep(3,5),rep(4,5)) %[<o]% cbind(1:5, 2:6)
-cbind(rep(3,5),rep(4,5)) %[o>]% cbind(1:5, 2:6)
+(ab1 <- cbind(rep(3,5),rep(4,5)))
+(ab2 <- cbind(1:5, 2:6))
+ab1 %[o]% ab2
+ab1 %)o(% ab2
+ab1 %[<o]% ab2
+ab1 %[o>]% ab2
 
 ## ensuring that a <= b, a1 <= b1, a2 <= b2
 stopifnot(identical(1:5 %[)% c(2,4), 1:5 %[)% c(4,2)))
