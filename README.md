@@ -49,6 +49,10 @@ The overlap of two closed intervals, [`a1`, `b1`] and [`a2`, `b2`],
 is evaluated by the `%[o]%` operator. `%)o(%` is used for the negation,
 directional evaluation is done via the operators `%[<o]%` and `%[o>]%`.
 
+Eqal      | Not equal  | Less than  | Greater than
+----------|------------|------------|----------------
+ `%[0]%`  | `%)0(%`    | `%[<0]%`   | `%[0>]%`
+
 ## Operators for discrete variables
 
 The previous operators will return `NA` for unordered factors.
