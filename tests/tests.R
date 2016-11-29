@@ -16,20 +16,22 @@ for (i in help_pages) {
 
 ## testing
 
-test_fun <- function(xchr, abchr, printout=TRUE, expect_NA=FALSE) {
+test_fun <- function(xchr, achr, bchr, printout=TRUE, expect_NA=FALSE) {
     tab <- intrval_types(type=NULL)
-    ex <- tab[,3]
+    ex <- tab[,1]
+    cond <- tab[,3]
     hit <- cbind(
         substr(tab[,2], 1, 1) == "=",
         substr(tab[,2], 4, 4) == "x",
         substr(tab[,2], 5, 5) == "=",
         substr(tab[,2], 8, 8) == "x",
         substr(tab[,2], 9, 9) == "=")
+    eval(parse(text=paste0("x <- ", xchr)))
+    eval(parse(text=paste0("a <- ", achr)))
+    eval(parse(text=paste0("b <- ", bchr)))
     for (i in seq_len(nrow(tab))) {
-        xpt <- hit[i,]
-        got <- eval(parse(text=
-            paste0("(", xchr, ") ", names(ex)[i], " (", abchr, ")")
-        ))
+        xpt <- eval(parse(text=cond))
+        got <- eval(parse(text=ex))
         if (printout) {
             cat("\n", rownames(tab)[i], "\n")
             mat <- rbind(Expect=xpt, Got=got)
@@ -45,19 +47,21 @@ test_fun <- function(xchr, abchr, printout=TRUE, expect_NA=FALSE) {
 }
 
 ## integer
-test_fun("1L:5L", "c(2L,4L)")
+test_fun("1L:5L", "2L", "4L")
 ## numeric
-test_fun("(1:5)+0.5", "c(2,4)+0.5")
+test_fun("(1:5)+0.5", "2.5","4.5")
 ## character
-test_fun("c('a','b','c','d','e')", "c('b','d')")
+test_fun("c('a','b','c','d','e')", "'b'","'d'")
 ## ordered
-test_fun("as.ordered(c('a','b','c','d','e'))", "c('b','d')")
+test_fun("as.ordered(c('a','b','c','d','e'))", "'b'","'d'")
 ## factor -- leads to NA
-suppressWarnings(test_fun("as.factor(c('a','b','c','d','e'))", "c('b','d')",
+suppressWarnings(test_fun("as.factor(c('a','b','c','d','e'))", "'b'","'d'",
     expect_NA=TRUE))
 ## date
-test_fun("as.Date(1:5,origin='2000-01-01')", "as.Date(c(2,4),origin='2000-01-01')")
-
+test_fun("as.Date(1:5,origin='2000-01-01')",
+    "as.Date(2,origin='2000-01-01')", "as.Date(4,origin='2000-01-01')")
+## NA
+test_fun("c(NA, NA, NA, 1, 2)", "NA", "NA", expect_NA=TRUE)
 
 ## --- motivating examples from example(lm) ---
 
