@@ -18,23 +18,17 @@ for (i in help_pages) {
 
 test_fun <- function(xchr, achr, bchr, printout=TRUE, expect_NA=FALSE) {
     tab <- intrval_types(type=NULL)
-    ex <- tab[,1]
-    cond <- tab[,3]
-    hit <- cbind(
-        substr(tab[,2], 1, 1) == "=",
-        substr(tab[,2], 4, 4) == "x",
-        substr(tab[,2], 5, 5) == "=",
-        substr(tab[,2], 8, 8) == "x",
-        substr(tab[,2], 9, 9) == "=")
+    ex <- tab[,"Expression"]
+    cond <- tab[,"Condition"]
     eval(parse(text=paste0("x <- ", xchr)))
     eval(parse(text=paste0("a <- ", achr)))
     eval(parse(text=paste0("b <- ", bchr)))
     for (i in seq_len(nrow(tab))) {
-        xpt <- eval(parse(text=cond))
-        got <- eval(parse(text=ex))
+        xpt <- eval(parse(text=cond[i]))
+        got <- eval(parse(text=ex[i]))
         if (printout) {
             cat("\n", rownames(tab)[i], "\n")
-            mat <- rbind(Expect=xpt, Got=got)
+            mat <- rbind(Expect=xpt, Found=got)
             print(mat)
         }
         allOK <- if (expect_NA)
