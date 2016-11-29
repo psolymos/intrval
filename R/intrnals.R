@@ -63,10 +63,11 @@ function(x, interval, type)
     A <- switch(type_a,
         "[" = x < ab$a,
         "(" = x <= ab$a)
-    B <- switch(type_b,
-        "]" = x <= ab$b,
-        ")" = x < ab$b)
-    A & B
+#    B <- switch(type_b,
+#        "]" = x <= ab$b,
+#        ")" = x < ab$b)
+#    A & B
+    A
 }
 
 .greatrthan <-
@@ -77,15 +78,17 @@ function(x, interval, type)
     type_a <- substr(type, 1L, 1L)
     type_b <- substr(type, 2L, 2L)
     ab <- .get_intrval(interval, sort=TRUE)
-    A <- switch(type_a,
-        "[" = x > ab$a,
-        "(" = x >= ab$a)
+#    A <- switch(type_a,
+#        "[" = x > ab$a,
+#        "(" = x >= ab$a)
     B <- switch(type_b,
-        "]" = x >= ab$b,
-        ")" = x > ab$b)
-    A & B
+        "]" = x > ab$b,
+        ")" = x >= ab$b)
+#    A & B
+    B
 }
 
+## a1 %[]% c(a2, b2) | b1 %[]% c(a2, b2)
 .intrval2 <-
 function(interval1, interval2)
 {
@@ -95,20 +98,24 @@ function(interval1, interval2)
     A | B
 }
 
+## b1 < a2
 .lssthan2 <-
 function(interval1, interval2)
 {
     ab <- .get_intrval(interval1, sort=TRUE)
-    A <- .lssthan(ab$a, interval2, "[]")
+#    A <- .lssthan(ab$a, interval2, "[]")
     B <- .lssthan(ab$b, interval2, "[]")
-    A & B
+#    A & B
+    B
 }
 
+## a1 > b2
 .greatrthan2 <-
 function(interval1, interval2)
 {
     ab <- .get_intrval(interval1, sort=TRUE)
     A <- .greatrthan(ab$a, interval2, "[]")
-    B <- .greatrthan(ab$b, interval2, "[]")
-    A & B
+#    B <- .greatrthan(ab$b, interval2, "[]")
+#    A & B
+    A
 }
