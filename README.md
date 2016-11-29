@@ -46,7 +46,13 @@ Eqal     | Not equal | Less than | Greater than
 ## Interval-to-interval relations
 
 The overlap of two closed intervals, [`a1`, `b1`] and [`a2`, `b2`],
-is evaluated by the `%[o]%` operator. `%)o(%` is used for the negation,
+is evaluated by the `%[o]%` operator. 
+
+Operator  | Expression                  | Condition
+----------|-----------------------------|----------------------------------------
+ `%[o]%`  | `c(a1, b1) %[o]% c(a2, b2)` | `a1 %[]% c(a2, b2) | b1 %[]% c(a2, b2)`
+
+`%)o(%` is used for the negation,
 directional evaluation is done via the operators `%[<o]%` and `%[o>]%`.
 
 Eqal      | Not equal  | Less than  | Greater than
