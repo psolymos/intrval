@@ -55,6 +55,28 @@ The previous operators will return `NA` for unordered factors.
 Set overlap can be evaluated by the base `%in%` operator and its negation
 `%notin%`.
 
+## Versions
+
+Install development version from GitHub:
+
+```R
+library(devtools)
+install_github("psolymos/intrval")
+```
+
+User visible changes are listed in the [NEWS](https://github.com/psolymos/intrval/blob/master/NEWS.md) file.
+
+## Report a problem
+
+Use the [issue tracker](https://github.com/psolymos/intrval/issues)
+to report a problem.
+
+## License
+
+[GPL-2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+
+## Examples
+
 ```R
 ## Annette Dobson (1990) "An Introduction to Generalized Linear Models".
 ## Page 9: Plant Weight Data.
@@ -159,24 +181,4 @@ cbind(rep(3,5),rep(4,5)) %[<o]% cbind(1:5, 2:6)
 cbind(rep(3,5),rep(4,5)) %[o>]% cbind(1:5, 2:6)
 # [1]  TRUE FALSE FALSE FALSE FALSE
 ```
-
-## Versions
-
-Install development version from GitHub:
-
-```R
-library(devtools)
-install_github("psolymos/intrval")
-```
-
-User visible changes are listed in the [NEWS](https://github.com/psolymos/intrval/blob/master/NEWS.md) file.
-
-## Report a problem
-
-Use the [issue tracker](https://github.com/psolymos/intrval/issues)
-to report a problem.
-
-## License
-
-[GPL-2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
