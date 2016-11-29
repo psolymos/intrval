@@ -42,16 +42,10 @@ function(x, interval, type)
 {
     type <- match.arg(type,
         c("[]", "[)", "(]", "()"))
-    type_a <- substr(type, 1L, 1L)
-    type_b <- substr(type, 2L, 2L)
     ab <- .get_intrval(interval)
-    A <- switch(type_a,
+    A <- switch(substr(type, 1L, 1L),
         "[" = x < ab$a,
         "(" = x <= ab$a)
-#    B <- switch(type_b,
-#        "]" = x <= ab$b,
-#        ")" = x < ab$b)
-#    A & B
     A
 }
 
@@ -60,16 +54,10 @@ function(x, interval, type)
 {
     type <- match.arg(type,
         c("[]", "[)", "(]", "()"))
-    type_a <- substr(type, 1L, 1L)
-    type_b <- substr(type, 2L, 2L)
     ab <- .get_intrval(interval)
-#    A <- switch(type_a,
-#        "[" = x > ab$a,
-#        "(" = x >= ab$a)
-    B <- switch(type_b,
+    B <- switch(substr(type, 2L, 2L),
         "]" = x > ab$b,
         ")" = x >= ab$b)
-#    A & B
     B
 }
 
@@ -88,9 +76,7 @@ function(interval1, interval2)
 function(interval1, interval2)
 {
     ab <- .get_intrval(interval1)
-#    A <- .lssthan(ab$a, interval2, "[]")
     B <- .lssthan(ab$b, interval2, "[]")
-#    A & B
     B
 }
 
@@ -100,7 +86,5 @@ function(interval1, interval2)
 {
     ab <- .get_intrval(interval1)
     A <- .greatrthan(ab$a, interval2, "[]")
-#    B <- .greatrthan(ab$b, interval2, "[]")
-#    A & B
     A
 }

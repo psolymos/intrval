@@ -46,7 +46,7 @@ Eqal     | Not equal | Less than | Greater than
 ## Interval-to-interval relations
 
 The overlap of two closed intervals, [`a1`, `b1`] and [`a2`, `b2`],
-is evaluated by the `%[o]%` operator. 
+is evaluated by the `%[o]%` operator (`a1 <= b1`, `a2 <= b2`). 
 
 Operator  | Expression                  | Condition
 ----------|-----------------------------|----------------------------------------
