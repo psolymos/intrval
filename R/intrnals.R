@@ -1,31 +1,16 @@
 .get_intrval <-
-function(interval, sort=TRUE)
+function(interval)
 {
-    if (sort) {
-        if (!is.null(dim(interval))) {
-            a <- pmin(interval[,1L], interval[,2L], na.rm=FALSE)
-            b <- pmax(interval[,1L], interval[,2L], na.rm=FALSE)
-        } else {
-            if (is.list(interval)) {
-                a <- pmin(interval[[1L]], interval[[2L]], na.rm=FALSE)
-                b <- pmax(interval[[1L]], interval[[2L]], na.rm=FALSE)
-            } else {
-                a <- pmin(interval[1L], interval[2L], na.rm=TRUE)
-                b <- pmax(interval[1L], interval[2L], na.rm=TRUE)
-            }
-        }
+    if (!is.null(dim(interval))) {
+        a <- pmin(interval[,1L], interval[,2L], na.rm=FALSE)
+        b <- pmax(interval[,1L], interval[,2L], na.rm=FALSE)
     } else {
-        if (!is.null(dim(interval))) {
-            a <- interval[,1L]
-            b <- interval[,2L]
+        if (is.list(interval)) {
+            a <- pmin(interval[[1L]], interval[[2L]], na.rm=FALSE)
+            b <- pmax(interval[[1L]], interval[[2L]], na.rm=FALSE)
         } else {
-            if (is.list(interval)) {
-                a <- interval[[1L]]
-                b <- interval[[2L]]
-            } else {
-                a <- interval[1L]
-                b <- interval[2L]
-            }
+            a <- pmin(interval[1L], interval[2L], na.rm=TRUE)
+            b <- pmax(interval[1L], interval[2L], na.rm=TRUE)
         }
     }
     list(a=a, b=b)
@@ -38,7 +23,7 @@ function(x, interval, type)
         c("[]", "[)", "(]", "()", "][", "](", ")[", ")("))
     type_a <- substr(type, 1L, 1L)
     type_b <- substr(type, 2L, 2L)
-    ab <- .get_intrval(interval, sort=TRUE)
+    ab <- .get_intrval(interval)
     A <- switch(type_a,
         "[" = x >= ab$a,
         "]" = x <= ab$a,
@@ -59,7 +44,7 @@ function(x, interval, type)
         c("[]", "[)", "(]", "()"))
     type_a <- substr(type, 1L, 1L)
     type_b <- substr(type, 2L, 2L)
-    ab <- .get_intrval(interval, sort=TRUE)
+    ab <- .get_intrval(interval)
     A <- switch(type_a,
         "[" = x < ab$a,
         "(" = x <= ab$a)
@@ -77,7 +62,7 @@ function(x, interval, type)
         c("[]", "[)", "(]", "()"))
     type_a <- substr(type, 1L, 1L)
     type_b <- substr(type, 2L, 2L)
-    ab <- .get_intrval(interval, sort=TRUE)
+    ab <- .get_intrval(interval)
 #    A <- switch(type_a,
 #        "[" = x > ab$a,
 #        "(" = x >= ab$a)
@@ -92,7 +77,7 @@ function(x, interval, type)
 .intrval2 <-
 function(interval1, interval2)
 {
-    ab <- .get_intrval(interval1, sort=TRUE)
+    ab <- .get_intrval(interval1)
     A <- .intrval(ab$a, interval2, "[]")
     B <- .intrval(ab$b, interval2, "[]")
     A | B
@@ -102,7 +87,7 @@ function(interval1, interval2)
 .lssthan2 <-
 function(interval1, interval2)
 {
-    ab <- .get_intrval(interval1, sort=TRUE)
+    ab <- .get_intrval(interval1)
 #    A <- .lssthan(ab$a, interval2, "[]")
     B <- .lssthan(ab$b, interval2, "[]")
 #    A & B
@@ -113,7 +98,7 @@ function(interval1, interval2)
 .greatrthan2 <-
 function(interval1, interval2)
 {
-    ab <- .get_intrval(interval1, sort=TRUE)
+    ab <- .get_intrval(interval1)
     A <- .greatrthan(ab$a, interval2, "[]")
 #    B <- .greatrthan(ab$b, interval2, "[]")
 #    A & B

@@ -57,6 +57,34 @@ test_fun("as.Date(1:5,origin='2000-01-01')",
 ## NA
 test_fun("c(NA, NA, NA, 1, 2)", "NA", "NA", expect_NA=TRUE)
 
+## overlap
+a1 <- 0:4
+b1 <- 1:5
+a2 <- rep(2,5)
+b2 <- rep(3,5)
+ab1 <- list(a1, b1)
+ab2 <- list(a2, b2)
+
+ex <- ab1 %[o]% ab2
+cond <- a1 %[]% ab2 | b1 %[]% ab2
+stopifnot(all(cond == ex))
+
+ex <- ab1 %)o(% ab2
+cond <- !(a1 %[]% ab2 | b1 %[]% ab2)
+stopifnot(all(cond == ex))
+
+ex <- ab1 %[<o]% ab2
+cond <- pmax(a1, b1) < pmin(a2, b2)
+stopifnot(all(cond == ex))
+
+ex <- ab1 %[o>]% ab2
+cond <- pmin(a1, b1) > pmax(a2, b2)
+stopifnot(all(cond == ex))
+
+## ensuring that a <= b, a1 <= b1, a2 <= b2
+stopifnot(identical(1:5 %[)% c(2,4), 1:5 %[)% c(4,2)))
+stopifnot(identical(c(1,3) %[o]% c(2,4), c(3,1) %[o]% c(4,2)))
+
 ## --- motivating examples from example(lm) ---
 
 ## Annette Dobson (1990) "An Introduction to Generalized Linear Models".
@@ -193,9 +221,6 @@ ab1 %)o(% ab2
 ab1 %[<o]% ab2
 ab1 %[o>]% ab2
 
-## ensuring that a <= b, a1 <= b1, a2 <= b2
-stopifnot(identical(1:5 %[)% c(2,4), 1:5 %[)% c(4,2)))
-stopifnot(identical(c(1,3) %[o]% c(2,4), c(3,1) %[o]% c(4,2)))
 
 ## timings
 
