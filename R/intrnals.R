@@ -7,7 +7,7 @@ function(interval)
         a <- pmin(interval[,1L], interval[,2L], na.rm=FALSE)
         b <- pmax(interval[,1L], interval[,2L], na.rm=FALSE)
     } else {
-        if (length(interval) > 2L))
+        if (length(interval) > 2L)
             warning("only first 2 elements of interval object are used")
         if (is.list(interval)) {
             a <- pmin(interval[[1L]], interval[[2L]], na.rm=FALSE)
