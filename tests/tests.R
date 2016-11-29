@@ -203,3 +203,37 @@ ab1 %[o>]% ab2
 stopifnot(identical(1:5 %[)% c(2,4), 1:5 %[)% c(4,2)))
 stopifnot(identical(c(1,3) %[o]% c(2,4), c(3,1) %[o]% c(4,2)))
 
+## timings
+
+set.seed(1)
+n <- 10^6
+x <- runif(n)
+a1 <- runif(n)
+b1 <- runif(n)
+a2 <- runif(n)
+b2 <- runif(n)
+
+system.time(x %[]% list(a1, b1))
+system.time(x %)(% list(a1, b1))
+system.time(x %[<]% list(a1, b1))
+system.time(x %[>]% list(a1, b1))
+
+system.time(x %[)% list(a1, b1))
+system.time(x %)[% list(a1, b1))
+system.time(x %[<)% list(a1, b1))
+system.time(x %[>)% list(a1, b1))
+
+system.time(x %(]% list(a1, b1))
+system.time(x %](% list(a1, b1))
+system.time(x %(<]% list(a1, b1))
+system.time(x %(>]% list(a1, b1))
+
+system.time(x %()% list(a1, b1))
+system.time(x %][% list(a1, b1))
+system.time(x %(<)% list(a1, b1))
+system.time(x %(>)% list(a1, b1))
+
+system.time(list(a2, b2) %[o]% list(a1, b1))
+system.time(list(a2, b2) %)o(% list(a1, b1))
+system.time(list(a2, b2) %[<o]% list(a1, b1))
+system.time(list(a2, b2) %[o>]% list(a1, b1))
