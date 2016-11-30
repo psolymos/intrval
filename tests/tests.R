@@ -256,3 +256,8 @@ system.time(list(a2, b2) %[o]% list(a1, b1))
 system.time(list(a2, b2) %)o(% list(a1, b1))
 system.time(list(a2, b2) %[<o]% list(a1, b1))
 system.time(list(a2, b2) %[o>]% list(a1, b1))
+
+## interesting cases: degenerate intervals
+
+0 %[]% c(0,0) # TRUE
+0 %()% c(0,0) # FALSE

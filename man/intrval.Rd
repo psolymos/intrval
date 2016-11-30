@@ -243,6 +243,9 @@ cbind(rep(3,5),rep(4,5)) %[o]% cbind(1:5, 2:6)
 cbind(rep(3,5),rep(4,5)) %[<o]% cbind(1:5, 2:6)
 cbind(rep(3,5),rep(4,5)) %[o>]% cbind(1:5, 2:6)
 
+## degenerate intervals
+0 %[]% c(0,0) # TRUE
+0 %()% c(0,0) # FALSE
 }
 \keyword{manip}
 \keyword{logic}
