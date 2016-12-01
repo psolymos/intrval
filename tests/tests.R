@@ -228,8 +228,9 @@ as.factor(c('a','b','c','d','e')) %[]% c('b','d')
 as.Date(1:5,origin='2000-01-01') %[]% as.Date(c(2,4),origin='2000-01-01')
 
 ## helper functions
-print_intrval()
-plot_intrval()
+intrval_types(plot=TRUE)
+intrval_types(plot=FALSE)
+
 
 ## recycling values
 1:10 %[]% list(1:5, 6)

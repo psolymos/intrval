@@ -21,8 +21,6 @@
 \alias{\%[<o]\%}
 \alias{\%[o>]\%}
 \alias{intrval_types}
-\alias{print_intrval}
-\alias{plot_intrval}
 \title{
 Relational Operators for Intervals
 }
@@ -56,9 +54,7 @@ interval1 \%)o(\% interval2
 interval1 \%[<o]\% interval2
 interval1 \%[o>]\% interval2
 
-intrval_types(type = NULL)
-print_intrval(type = NULL)
-plot_intrval(type = NULL)
+intrval_types(type = NULL, plot = TRUE)
 }
 \arguments{
   \item{x}{
@@ -72,9 +68,11 @@ vector, 2-column matrix, list, or \code{NULL}: the interval end points
 of two (sets) of closed intervals to compare.
 }
   \item{type}{
-character, any of
-\code{"[]"}, \code{"[)"}, \code{"(]"}, \code{"()"},
-\code{"]["}, \code{"]("}, \code{")["}, \code{")("}.
+character, type of operator for subsetting the results. The default \code{NULL}
+means that all types will be displayed.
+}
+  \item{plot}{
+logical, whether to plot the results, or print a table instead.
 }
 }
 \details{
@@ -94,7 +92,7 @@ shorter objects are recycled.
 A logical vector, indicating if \code{x} is in the interval specified.
 Values are \code{TRUE}, \code{FALSE}, or \code{NA}.
 
-The helper functions \code{print_intrval} and \code{plot_intrval}
+The helper functions \code{intrval_types}
 can be used to understand and visualize the operators effects.
 These return a matrix with expaining the operators.
 }

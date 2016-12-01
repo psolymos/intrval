@@ -5,6 +5,6 @@ export(
     "%[>]%", "%[>)%", "%(>]%",  "%(>)%",
     "%[o]%", "%)o(%", "%[<o]%", "%[o>]%",
     "%nin%",
-    "intrval_types", "print_intrval", "plot_intrval")
+    "intrval_types")
 
 importFrom("graphics", "lines", "par", "plot", "points", "text")
