@@ -86,16 +86,58 @@ stopifnot(identical(1:5 %[)% c(2,4), 1:5 %[)% c(4,2)))
 stopifnot(identical(c(1,3) %[o]% c(2,4), c(3,1) %[o]% c(4,2)))
 
 ## nested intervals
-stopifnot(all(
+TEST <- c(
     c(1,4) %[o]% c(2,3),
     c(2,3) %[o]% c(1,4),
+    c(1,4) %[o]% c(1,3),
+    c(1,3) %[o]% c(1,4),
+    c(1,3) %[o]% c(1,3),
     !(c(1,4) %)o(% c(2,3)),
     !(c(2,3) %)o(% c(1,4)),
+    !(c(1,4) %)o(% c(1,3)),
+    !(c(1,3) %)o(% c(1,4)),
+    !(c(1,3) %)o(% c(1,3)),
     !(c(1,4) %[<o]% c(2,3)),
     !(c(2,3) %[<o]% c(1,4)),
+    !(c(1,4) %[<o]% c(1,3)),
+    !(c(1,3) %[<o]% c(1,4)),
+    !(c(1,3) %[<o]% c(1,3)),
     !(c(1,4) %[o>]% c(2,3)),
-    !(c(2,3) %[o>]% c(1,4))
-))
+    !(c(2,3) %[o>]% c(1,4)),
+    !(c(1,4) %[o>]% c(1,3)),
+    !(c(1,3) %[o>]% c(1,4)),
+    !(c(1,3) %[o>]% c(1,3))
+    )
+stopifnot(all(TEST))
+
+## random overlap testing
+overlap_fun <- function(i) {
+    i1 <- sort(i[1]:i[2])
+    i2 <- sort(i[3]:i[4])
+    list(
+        intervals=i,
+        expected=c(
+            any(i1 %in% i2),
+            all(!(i1 %in% i2)),
+            max(i1) < min(i2),
+            min(i1) > max(i2)),
+        found=c(
+            i[1:2] %[o]% i[3:4],
+            i[1:2] %)o(% i[3:4],
+            i[1:2] %[<o]% i[3:4],
+            i[1:2] %[o>]% i[3:4])
+    )
+}
+overlap_check <- function(x) {
+    all(x$expected == x$found)
+}
+res <- list()
+set.seed(as.integer(Sys.time()))
+for (j in 1:(10^4)) {
+    res[[j]] <- overlap_fun(sample(10, 4, replace=TRUE))
+}
+stopifnot(all(sapply(res, overlap_check)))
+str(res[!sapply(res, overlap_check)])
 
 ## interesting cases: degenerate intervals
 
