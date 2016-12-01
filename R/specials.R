@@ -55,5 +55,5 @@
     .greatrthan2(interval1, interval2)
 
 ## notin
-"%notin%" <- function(x, table)
+"%nin%" <- function(x, table)
     !(match(x, table, nomatch = 0) > 0)

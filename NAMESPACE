@@ -4,7 +4,7 @@ export(
     "%[<]%", "%[<)%", "%(<]%",  "%(<)%",
     "%[>]%", "%[>)%", "%(>]%",  "%(>)%",
     "%[o]%", "%)o(%", "%[<o]%", "%[o>]%",
-    "%notin%",
+    "%nin%",
     "intrval_types", "print_intrval", "plot_intrval")
 
 importFrom("graphics", "lines", "par", "plot", "points", "text")
