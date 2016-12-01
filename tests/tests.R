@@ -85,6 +85,27 @@ stopifnot(all(cond == ex))
 stopifnot(identical(1:5 %[)% c(2,4), 1:5 %[)% c(4,2)))
 stopifnot(identical(c(1,3) %[o]% c(2,4), c(3,1) %[o]% c(4,2)))
 
+## nested intervals
+stopifnot(all(
+    c(1,4) %[o]% c(2,3),
+    c(2,3) %[o]% c(1,4),
+    !(c(1,4) %)o(% c(2,3)),
+    !(c(2,3) %)o(% c(1,4)),
+    !(c(1,4) %[<o]% c(2,3)),
+    !(c(2,3) %[<o]% c(1,4)),
+    !(c(1,4) %[o>]% c(2,3)),
+    !(c(2,3) %[o>]% c(1,4))
+))
+
+## interesting cases: degenerate intervals
+
+stopifnot(all(
+    0 %[]% c(0,0), # TRUE
+    !(0 %[)% c(0,0)), # FALSE
+    !(0 %(]% c(0,0)), # FALSE
+    !(0 %()% c(0,0)) # FALSE
+))
+
 ## --- motivating examples from example(lm) ---
 
 ## Annette Dobson (1990) "An Introduction to Generalized Linear Models".
@@ -257,7 +278,3 @@ system.time(list(a2, b2) %)o(% list(a1, b1))
 system.time(list(a2, b2) %[<o]% list(a1, b1))
 system.time(list(a2, b2) %[o>]% list(a1, b1))
 
-## interesting cases: degenerate intervals
-
-0 %[]% c(0,0) # TRUE
-0 %()% c(0,0) # FALSE

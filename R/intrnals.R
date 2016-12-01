@@ -67,12 +67,15 @@ function(x, interval, type)
 
 ## a1 %[]% c(a2, b2) | b1 %[]% c(a2, b2)
 .intrval2 <-
-function(interval1, interval2)
+function(interval1, interval2, overlap=TRUE)
 {
     ab <- .get_intrval(interval1)
-    A <- .intrval(ab$a, interval2, "[]")
-    B <- .intrval(ab$b, interval2, "[]")
-    A | B
+#    A <- .intrval(ab$a, interval2, "[]")
+#    B <- .intrval(ab$b, interval2, "[]")
+    A <- .greatrthan(ab$a, interval2, "[]")
+    B <- .lssthan(ab$b, interval2, "[]")
+    if (overlap)
+        !(A | B) else (A | B)
 }
 
 ## b1 < a2
