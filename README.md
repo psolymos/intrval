@@ -87,6 +87,44 @@ to report a problem.
 
 ## Examples
 
+![](https://github.com/psolymos/intrval/raw/master/extras/examples.png)
+
+```R
+## bounding box
+set.seed(1)
+n <- 10^4
+x <- runif(n, -2, 2)
+y <- runif(n, -2, 2)
+d <- sqrt(x^2 + y^2)
+iv1 <- x %[]% c(-0.25, 0.25) & y %[]% c(-1.5, 1.5)
+iv2 <- x %[]% c(-1.5, 1.5) & y %[]% c(-0.25, 0.25)
+iv3 <- d %()% c(1, 1.5)
+plot(x, y, pch = 19, cex = 0.25, col = iv1 + iv2 + 1,
+    main = "Intersecting bounding boxes")
+plot(x, y, pch = 19, cex = 0.25, col = iv3 + 1,
+     main = "Deck the halls:\ndistance range from center")
+
+## time series filtering
+x <- seq(0, 4*24*60*60, 60*60)
+dt <- as.POSIXct(x, origin="2000-01-01 00:00:00")
+f <- as.POSIXlt(dt)$hour %[]% c(0, 11)
+plot(sin(x) ~ dt, type="l", col="grey",
+    main = "Filtering date/time objects")
+points(sin(x) ~ dt, pch = 19, col = f + 1)
+
+## QCC
+library(qcc)
+data(pistonrings)
+mu <- mean(pistonrings$diameter[pistonrings$trial])
+SD <- sd(pistonrings$diameter[pistonrings$trial])
+x <- pistonrings$diameter[!pistonrings$trial]
+iv <- mu + 3 * c(-SD, SD)
+plot(x, pch = 19, col = x %)(% iv +1, type = "b", ylim = mu + 5 * c(-SD, SD),
+    main = "Shewhart quality control chart\ndiameter of piston rings")
+abline(h = mu)
+abline(h = iv, lty = 2)
+```
+
 ```R
 ## Annette Dobson (1990) "An Introduction to Generalized Linear Models".
 ## Page 9: Plant Weight Data.
