@@ -54,7 +54,7 @@ interval1 \%)o(\% interval2
 interval1 \%[<o]\% interval2
 interval1 \%[o>]\% interval2
 
-intrval_types(type = NULL, plot = TRUE)
+intrval_types(type = NULL, plot = FALSE)
 }
 \arguments{
   \item{x}{
@@ -72,7 +72,7 @@ character, type of operator for subsetting the results. The default \code{NULL}
 means that all types will be displayed.
 }
   \item{plot}{
-logical, whether to plot the results, or print a table instead.
+logical, whether to plot the results, or print a table to the console instead.
 }
 }
 \details{
@@ -188,8 +188,9 @@ as.factor(c('a','b','c','d','e')) %[]% c('b','d')
 as.Date(1:5,origin='2000-01-01') %[]% as.Date(c(2,4),origin='2000-01-01')
 
 ## helper functions
-print_intrval()
-plot_intrval()
+intrval_types() # print
+intrval_types(plot = TRUE) # plot
+
 
 ## recycling values
 1:10 %[]% list(1:5, 6)
