@@ -53,7 +53,7 @@ See help page for relational operators: \code{\link{Comparison}}.
 See \code{\link{\%[]\%}} for relational operators for
 value-to-interval comparisons.
 
-See \code{\link{factor}} for the behaviour with factor arguments.
+See \code{\link{factor}} for the behavior with factor arguments.
 See also \code{\link{\%in\%}} for value matching
 and \code{\link{\%nin\%}} for negated value matching
 for factors.

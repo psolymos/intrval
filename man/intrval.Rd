@@ -84,15 +84,15 @@ closed (\code{[} and \code{]}) endpoints and relations.
 There are four types of intervals (\code{[]}, \code{[)}, \code{(]}, \code{()}),
 their negation (\code{)(}, \code{)[}, \code{](}, \code{][}, respectively),
 less than (\code{[<]}, \code{[<)}, \code{(<]}, \code{(<)}),
-and greater tha (\code{[>]}, \code{[>)}, \code{(>]}, \code{(>)}) relations.
+and greater than (\code{[>]}, \code{[>)}, \code{(>]}, \code{(>)}) relations.
 }
 \value{
 A logical vector, indicating if \code{x} is in the interval specified.
 Values are \code{TRUE}, \code{FALSE}, or \code{NA}.
 
-The helper functions \code{intrval_types}
+The helper function \code{intrval_types}
 can be used to understand and visualize the operators effects.
-These return a matrix with expaining the operators.
+It returns a matrix explaining the properties of the operators.
 }
 \author{
 Peter Solymos <solymos@ualberta.ca>
@@ -100,10 +100,10 @@ Peter Solymos <solymos@ualberta.ca>
 \seealso{
 See help page for relational operators: \code{\link{Comparison}}.
 
-See \code{\link{\%[o]\%}} for felational operators for
+See \code{\link{\%[o]\%}} for relational operators for
 interval-to-interval comparisons.
 
-See \code{\link{factor}} for the behaviour with factor arguments.
+See \code{\link{factor}} for the behavior with factor arguments.
 See also \code{\link{\%in\%}} for value matching
 and \code{\link{\%nin\%}} for negated value matching
 for factors.
