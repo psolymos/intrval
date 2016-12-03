@@ -70,25 +70,25 @@ weight <- c(ctl, trt)
 lm.D90 <- lm(weight ~ group - 1) # omitting intercept
 ## compare 95\% confidence of the 2 groups to each other
 (CI.D90 <- confint(lm.D90))
-CI.D90[1,] %[o]% CI.D90[2,]
+CI.D90[1,] \%[o]\% CI.D90[2,]
 
 ## simple interval comparisons
-c(2:3) %[o]% c(0:1)
+c(2:3) \%[o]\% c(0:1)
 
 ## vectorized comparisons
-c(2:3) %[o]% list(0:4, 1:5)
-c(2:3) %[o]% cbind(0:4, 1:5)
-c(2:3) %[o]% data.frame(a=0:4, b=1:5)
-list(0:4, 1:5) %[o]% c(2:3)
-cbind(0:4, 1:5) %[o]% c(2:3)
-data.frame(a=0:4, b=1:5) %[o]% c(2:3)
+c(2:3) \%[o]\% list(0:4, 1:5)
+c(2:3) \%[o]\% cbind(0:4, 1:5)
+c(2:3) \%[o]\% data.frame(a=0:4, b=1:5)
+list(0:4, 1:5) \%[o]\% c(2:3)
+cbind(0:4, 1:5) \%[o]\% c(2:3)
+data.frame(a=0:4, b=1:5) \%[o]\% c(2:3)
 
-list(0:4, 1:5) %[o]% cbind(rep(2,5), rep(3,5))
-cbind(rep(2,5), rep(3,5)) %[o]% list(0:4, 1:5)
+list(0:4, 1:5) \%[o]\% cbind(rep(2,5), rep(3,5))
+cbind(rep(2,5), rep(3,5)) \%[o]\% list(0:4, 1:5)
 
-cbind(rep(3,5),rep(4,5)) %[o]% cbind(1:5, 2:6)
-cbind(rep(3,5),rep(4,5)) %[<o]% cbind(1:5, 2:6)
-cbind(rep(3,5),rep(4,5)) %[o>]% cbind(1:5, 2:6)
+cbind(rep(3,5),rep(4,5)) \%[o]\% cbind(1:5, 2:6)
+cbind(rep(3,5),rep(4,5)) \%[<o]\% cbind(1:5, 2:6)
+cbind(rep(3,5),rep(4,5)) \%[o>]\% cbind(1:5, 2:6)
 }
 \keyword{manip}
 \keyword{logic}
