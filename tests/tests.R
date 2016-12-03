@@ -303,3 +303,7 @@ system.time(list(a2, b2) %)o(% list(a1, b1))
 system.time(list(a2, b2) %[<o]% list(a1, b1))
 system.time(list(a2, b2) %[o>]% list(a1, b1))
 
+## helper function
+
+intrval_types() # print
+intrval_types(1:4) # print

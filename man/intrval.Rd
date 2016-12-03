@@ -1,5 +1,5 @@
 \name{intrval}
-\alies(interval)
+\alias{interval}
 \alias{\%[]\%}
 \alias{\%[)\%}
 \alias{\%(]\%}
