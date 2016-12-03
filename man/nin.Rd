@@ -1,4 +1,5 @@
 \name{\%nin\%}
+\alias{nin}
 \alias{\%nin\%}
 \title{
 Negated Value Matching
