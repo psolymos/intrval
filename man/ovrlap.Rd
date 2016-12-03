@@ -24,7 +24,7 @@ of two (sets) of closed intervals to compare.
 }
 \details{
 The overlap of two closed intervals, [a1, b1] and [a2, b2],
-is evaluated by the \code{%[o]%} operator (a1 <= b1, a2 <= b2).
+is evaluated by the \code{\%[o]\%} operator (a1 <= b1, a2 <= b2).
 Endpoints can be defined as a vector with two values
 (\code{c(a1, b1)})or can be stored in matrix-like objects or a lists
 in which case comparisons are made element-wise.
@@ -36,9 +36,9 @@ Note: interval endpoints
 are sorted internally thus ensuring the conditions
 a1 <= b1 and a2 <= b2 is not necessary.
 
-\code{%)o(%} is used for the negation,
+\code{\%)o(\%} is used for the negation,
 directional evaluation is done via the operators
-\code{%[<o]%} and \code{%[o>]%}.
+\code{\%[<o]\%} and \code{\%[o>]\%}.
 }
 \value{
 A logical vector, indicating if \code{interval1} overlaps \code{interval2}.
