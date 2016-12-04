@@ -1,8 +1,8 @@
 Package: intrval
 Type: Package
 Title: Relational Operators for Intervals
-Version: 0.0-1
-Date: 2016-11-26
+Version: 0.0-2
+Date: 2016-12-03
 Author: Peter Solymos
 Maintainer: Peter Solymos <solymos@ualberta.ca>
 Description: Evaluating if values 
