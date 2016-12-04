@@ -19,7 +19,7 @@ Relational operators for value-to-interval comparisons:
 Relational operators for interval-to-interval comparisons:
 \code{\link{\%[o]\%}} and alikes.
 
-Negated value matching: \code{\link{\%nin\%}}.
+Negated value matching: \code{\link{\%ni\%}}.
 }
 \author{
 \packageAuthor{intrval}

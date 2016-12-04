@@ -51,6 +51,6 @@
 "%[o>]%" <- function(interval1, interval2)
     .greatrthan2(interval1, interval2)
 
-## notin
-"%nin%" <- function(x, table)
+## notin/nin/ni - opposite of %in%
+"%ni%" <- function(x, table)
     !(match(x, table, nomatch = 0) > 0)

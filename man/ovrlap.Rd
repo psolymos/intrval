@@ -55,7 +55,7 @@ value-to-interval comparisons.
 
 See \code{\link{factor}} for the behavior with factor arguments.
 See also \code{\link{\%in\%}} for value matching
-and \code{\link{\%nin\%}} for negated value matching
+and \code{\link{\%ni\%}} for negated value matching
 for factors.
 }
 \examples{

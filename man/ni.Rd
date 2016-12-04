@@ -1,16 +1,16 @@
-\name{\%nin\%}
-\alias{nin}
-\alias{\%nin\%}
+\name{\%ni\%}
+\alias{ni}
+\alias{\%ni\%}
 \title{
 Negated Value Matching
 }
 \description{
-\code{\%nin\%} is the negation of \code{\link{\%in\%}},
+\code{\%ni\%} is the negation of \code{\link{\%in\%}},
 which returns a logical vector indicating if there is a non-match or not
 for its left operand.
 }
 \usage{
-x \%nin\% table
+x \%ni\% table
 }
 \arguments{
   \item{x}{
@@ -33,9 +33,9 @@ All the opposite of what is written for \code{\link{\%in\%}}.
 See relational operators for intervals: \code{\link{\%[]\%}}.
 }
 \examples{
-1:10 \%nin\% c(1,3,5,9)
+1:10 \%ni\% c(1,3,5,9)
 sstr <- c("c","ab","B","bba","c",NA,"@","bla","a","Ba","\%")
-sstr[sstr \%nin\% c(letters, LETTERS)]
+sstr[sstr \%ni\% c(letters, LETTERS)]
 }
 \keyword{manip}
 \keyword{logic}

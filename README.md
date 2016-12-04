@@ -90,7 +90,7 @@ Eqal      | Not equal  | Less than  | Greater than
 
 The previous operators will return `NA` for unordered factors.
 Set overlap can be evaluated by the base `%in%` operator and its negation
-`%nin%`.
+`%ni%`.
 
 ## Versions
 
