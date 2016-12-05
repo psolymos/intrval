@@ -85,6 +85,17 @@ There are four types of intervals (\code{[]}, \code{[)}, \code{(]}, \code{()}),
 their negation (\code{)(}, \code{)[}, \code{](}, \code{][}, respectively),
 less than (\code{[<]}, \code{[<)}, \code{(<]}, \code{(<)}),
 and greater than (\code{[>]}, \code{[>)}, \code{(>]}, \code{(>)}) relations.
+
+Note that some operators return identical results but
+are syntactically different:
+\code{\%[<]\%} and \code{\%[<)\%} both evaluate \code{x < a};
+\code{\%[>]\%} and \code{\%(>]\%} both evaluate \code{x > b};
+\code{\%(<]\%} and \code{\%(<)\%} evaluate \code{x <= a};
+\code{\%[>)\%} and \code{\%(>)\%} both evaluate \code{x >= b}.
+This is so because we evaluate only one end of the interval
+but still conceptually referring to all 3 ordered segments
+which are different (2 conditional logical evaluations vs.
+a 3-level ordered factor).
 }
 \value{
 A logical vector, indicating if \code{x} is in the interval specified.
