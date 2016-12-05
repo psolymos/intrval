@@ -93,9 +93,10 @@ are syntactically different:
 \code{\%(<]\%} and \code{\%(<)\%} evaluate \code{x <= a};
 \code{\%[>)\%} and \code{\%(>)\%} both evaluate \code{x >= b}.
 This is so because we evaluate only one end of the interval
-but still conceptually referring to all 3 ordered segments
-which are different (2 conditional logical evaluations vs.
-a 3-level ordered factor).
+but still conceptually referring to the relationship
+defined by the right-hand-side \code{interval} object.
+This implies 2 conditional logical evaluations
+instead of treating it as a single 3-level ordered factor.
 }
 \value{
 A logical vector, indicating if \code{x} is in the interval specified.

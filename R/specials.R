@@ -19,9 +19,9 @@
     !.intrval(x, interval, "()")
 
 ## directional relations for compact intervals: less than
-#"%<[%" <- function(x, interval)
+#"%<[%" <- function(x, interval) # <
 #    .lssthan(x, interval, "[")
-#"%<(%" <- function(x, interval)
+#"%<(%" <- function(x, interval) # <=
 #    .lssthan(x, interval, "(")
 "%[<]%" <- function(x, interval)
     .lssthan(x, interval, "[")
@@ -33,9 +33,9 @@
     .lssthan(x, interval, "(")
 
 ## directional relations for compact intervals: greater than
-#"%]>%" <- function(x, interval)
+#"%]>%" <- function(x, interval) # >
 #    .greatrthan(x, interval, "]")
-#"%)>%" <- function(x, interval)
+#"%)>%" <- function(x, interval) # >=
 #    .greatrthan(x, interval, ")")
 "%[>]%" <- function(x, interval)
     .greatrthan(x, interval, "]")
