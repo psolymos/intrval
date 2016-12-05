@@ -63,7 +63,7 @@ logical, whether to plot the results, or print a table to the console instead.
 }
 \details{
 Values of \code{x} are compared to \code{interval} endpoints
-'a' and 'b' (a <= b).
+a and b (a <= b).
 Endpoints can be defined as a vector with two values
 (\code{c(a, b)}): these values will be compared as a single
 interval with each value in \code{x}.
@@ -94,7 +94,8 @@ are syntactically different:
 \code{\%[>)\%} and \code{\%(>)\%} both evaluate \code{x >= b}.
 This is so because we evaluate only one end of the interval
 but still conceptually referring to the relationship
-defined by the right-hand-side \code{interval} object.
+defined by the right-hand-side \code{interval} object
+and given that a <= b.
 This implies 2 conditional logical evaluations
 instead of treating it as a single 3-level ordered factor.
 }
