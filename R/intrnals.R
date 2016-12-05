@@ -64,8 +64,8 @@ function(x, interval, type)
 function(interval1, interval2, overlap=TRUE)
 {
     ab <- .get_intrval(interval1)
-    A <- .greatrthan(ab$a, interval2, "[]")
-    B <- .lssthan(ab$b, interval2, "[]")
+    A <- .greatrthan(ab$a, interval2, "]")
+    B <- .lssthan(ab$b, interval2, "[")
     if (overlap)
         !(A | B) else (A | B)
 }
@@ -75,7 +75,7 @@ function(interval1, interval2, overlap=TRUE)
 function(interval1, interval2)
 {
     ab <- .get_intrval(interval1)
-    .lssthan(ab$b, interval2, "[]")
+    .lssthan(ab$b, interval2, "[")
 }
 
 ## a1 > b2
@@ -83,5 +83,5 @@ function(interval1, interval2)
 function(interval1, interval2)
 {
     ab <- .get_intrval(interval1)
-    .greatrthan(ab$a, interval2, "[]")
+    .greatrthan(ab$a, interval2, "]")
 }
