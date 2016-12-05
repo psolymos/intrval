@@ -23,6 +23,8 @@ intrval_types <- function(type=NULL, plot=FALSE) {
     colnames(tab) <- c("Expression", "Visual", "Condition")
     rownames(tab) <- substr(tab[,1L], 3, nchar(tab[,1L])-8)
     if (!is.null(type)) {
+        if (length(type) < 1L)
+            stop("type must be NULL or has positive length")
         if (is.character(type))
             type <- match.arg(type, rownames(tab), several.ok=TRUE)
         tab <- tab[type,,drop=FALSE]
@@ -33,9 +35,10 @@ intrval_types <- function(type=NULL, plot=FALSE) {
         n <- nrow(tab)
         op <- par(mar=c(1,1,1,1), family="mono")
         on.exit(par(op))
-        plot(0, type="n", ylim=c(n+1, -1), xlim=c(1,8), axes=FALSE, ann=FALSE)
+        plot(0, type="n", ylim=c(n+2, -1), xlim=c(1,8), axes=FALSE, ann=FALSE)
         text(c(2, 4.5, 7), c(-1,-1,-1), colnames(tab))
         text(c(4,5), c(n+1,n+1), c("a","b"))
+        text(7, n+2, c("(a <= b)"))
         text(rep(2, n), seq_len(n), tab[,1])
         text(rep(7, n), seq_len(n), tab[,3])
         for (i in seq_len(n)) {
