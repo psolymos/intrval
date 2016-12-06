@@ -94,11 +94,16 @@ Set overlap can be evaluated by the base `%in%` operator and its negation
 
 ## Versions
 
+Install from CRAN:
+
+```R
+install.packages("intrval")
+```
+
 Install development version from GitHub:
 
 ```R
-library(devtools)
-install_github("psolymos/intrval")
+devtools::install_github("psolymos/intrval")
 ```
 
 User visible changes are listed in the [NEWS](https://github.com/psolymos/intrval/blob/master/NEWS.md) file.
