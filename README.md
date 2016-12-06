@@ -82,7 +82,7 @@ least on ordinal scale (e.g. dates).
 `%)o(%` is used for the negation,
 directional evaluation is done via the operators `%[<o]%` and `%[o>]%`.
 
-Eqal      | Not equal  | Less than  | Greater than
+Equal      | Not equal  | Less than  | Greater than
 ----------|------------|------------|----------------
  `%[0]%`  | `%)0(%`    | `%[<0]%`   | `%[0>]%`
 
