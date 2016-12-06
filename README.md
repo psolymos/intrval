@@ -69,10 +69,10 @@ are sorted internally thus ensuring the conditions
 `a1 <= b1` and `a2 <= b2` is not necessary.
 
 ```R
-c(2:3) %[o]% c(0:1)
-list(0:4, 1:5) %[o]% c(2:3)
-cbind(0:4, 1:5) %[o]% c(2:3)
-data.frame(a=0:4, b=1:5) %[o]% c(2:3)
+c(2, 3) %[o]% c(0, 1)
+list(0:4, 1:5) %[o]% c(2, 3)
+cbind(0:4, 1:5) %[o]% c(2, 3)
+data.frame(a=0:4, b=1:5) %[o]% c(2, 3)
 ```
 
 If lengths do not match, shorter objects are recycled.
