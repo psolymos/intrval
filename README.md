@@ -16,7 +16,8 @@ Operators for negation and directional relations also implemented.
 ## Value-to-interval relations
 
 Values of `x` are compared to interval endpoints `a` and `b` (`a <= b`).
-Endpoints can be defined as a vector with two values (`c(a, b)`): these values will be compared as a single interval with each value in `x`.
+Endpoints can be defined as a vector with two values (`c(a, b)`):
+these values will be compared as a single interval with each value in `x`.
 If endpoints are stored in a matrix-like object or a list,
 comparisons are made element-wise.
 
