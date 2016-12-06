@@ -1,7 +1,8 @@
 # User-visible changes in the intrval R package
 
-## Version 0.0-2 -- Dec 4, 2016
+## Version 0.1-0 -- Dec 5, 2016
 
+* CRAN release version.
 * Functions finalized.
 * Documentation and tests added.
 
