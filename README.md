@@ -18,7 +18,7 @@ Operators for negation and directional relations also implemented.
 Values of `x` are compared to interval endpoints `a` and `b` (`a <= b`).
 Endpoints can be defined as a vector with two values (`c(a, b)`): these values will be compared as a single interval with each value in `x`.
 If endpoints are stored in a matrix-like object or a list,
-comparisons are made element-wise. 
+comparisons are made element-wise.
 
 ```R
 x <- rep(4, 5)
@@ -49,7 +49,7 @@ Operator | Expression       | Condition
 
 ### Negation and directional relations
 
-Eqal     | Not equal | Less than | Greater than
+Equal     | Not equal | Less than | Greater than
 ---------|-----------|-----------|----------------
  `%[]%`  | `%)(%`    | `%[<]%`   | `%[>]%`
  `%[)%`  | `%)[%`    | `%[<)%`   | `%[>)%`
@@ -59,7 +59,7 @@ Eqal     | Not equal | Less than | Greater than
 ## Interval-to-interval relations
 
 The overlap of two closed intervals, [`a1`, `b1`] and [`a2`, `b2`],
-is evaluated by the `%[o]%` operator (`a1 <= b1`, `a2 <= b2`). 
+is evaluated by the `%[o]%` operator (`a1 <= b1`, `a2 <= b2`).
 Endpoints can be defined as a vector with two values
 (`c(a1, b1)`)or can be stored in matrix-like objects or a lists
 in which case comparisons are made element-wise.
@@ -84,7 +84,7 @@ directional evaluation is done via the operators `%[<o]%` and `%[o>]%`.
 
 Equal      | Not equal  | Less than  | Greater than
 ----------|------------|------------|----------------
- `%[0]%`  | `%)0(%`    | `%[<0]%`   | `%[0>]%`
+ `%[o]%`  | `%)o(%`    | `%[<o]%`   | `%[o>]%`
 
 ## Operators for discrete variables
 
