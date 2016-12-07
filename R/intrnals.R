@@ -13,6 +13,8 @@ function(interval)
             a <- pmin(interval[[1L]], interval[[2L]], na.rm=FALSE)
             b <- pmax(interval[[1L]], interval[[2L]], na.rm=FALSE)
         } else {
+            if (any(is.na(interval)))
+                warning("NA values where found and coerced")
             a <- pmin(interval[1L], interval[2L], na.rm=TRUE)
             b <- pmax(interval[1L], interval[2L], na.rm=TRUE)
         }
