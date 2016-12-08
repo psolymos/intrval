@@ -13,8 +13,8 @@ function(interval)
             a <- pmin(interval[[1L]], interval[[2L]], na.rm=FALSE)
             b <- pmax(interval[[1L]], interval[[2L]], na.rm=FALSE)
         } else {
-            a <- pmin(interval[1L], interval[2L], na.rm=TRUE)
-            b <- pmax(interval[1L], interval[2L], na.rm=TRUE)
+            a <- pmin(interval[1L], interval[2L], na.rm=FALSE)
+            b <- pmax(interval[1L], interval[2L], na.rm=FALSE)
         }
     }
     list(a=a, b=b)

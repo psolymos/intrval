@@ -16,9 +16,10 @@ Operators for negation and directional relations also implemented.
 ## Value-to-interval relations
 
 Values of `x` are compared to interval endpoints `a` and `b` (`a <= b`).
-Endpoints can be defined as a vector with two values (`c(a, b)`): these values will be compared as a single interval with each value in `x`.
+Endpoints can be defined as a vector with two values (`c(a, b)`):
+these values will be compared as a single interval with each value in `x`.
 If endpoints are stored in a matrix-like object or a list,
-comparisons are made element-wise. 
+comparisons are made element-wise.
 
 ```R
 x <- rep(4, 5)
@@ -49,7 +50,7 @@ Operator | Expression       | Condition
 
 ### Negation and directional relations
 
-Eqal     | Not equal | Less than | Greater than
+Equal     | Not equal | Less than | Greater than
 ---------|-----------|-----------|----------------
  `%[]%`  | `%)(%`    | `%[<]%`   | `%[>]%`
  `%[)%`  | `%)[%`    | `%[<)%`   | `%[>)%`
@@ -59,7 +60,7 @@ Eqal     | Not equal | Less than | Greater than
 ## Interval-to-interval relations
 
 The overlap of two closed intervals, [`a1`, `b1`] and [`a2`, `b2`],
-is evaluated by the `%[o]%` operator (`a1 <= b1`, `a2 <= b2`). 
+is evaluated by the `%[o]%` operator (`a1 <= b1`, `a2 <= b2`).
 Endpoints can be defined as a vector with two values
 (`c(a1, b1)`)or can be stored in matrix-like objects or a lists
 in which case comparisons are made element-wise.
@@ -68,10 +69,10 @@ are sorted internally thus ensuring the conditions
 `a1 <= b1` and `a2 <= b2` is not necessary.
 
 ```R
-c(2:3) %[o]% c(0:1)
-list(0:4, 1:5) %[o]% c(2:3)
-cbind(0:4, 1:5) %[o]% c(2:3)
-data.frame(a=0:4, b=1:5) %[o]% c(2:3)
+c(2, 3) %[o]% c(0, 1)
+list(0:4, 1:5) %[o]% c(2, 3)
+cbind(0:4, 1:5) %[o]% c(2, 3)
+data.frame(a=0:4, b=1:5) %[o]% c(2, 3)
 ```
 
 If lengths do not match, shorter objects are recycled.
@@ -82,9 +83,9 @@ least on ordinal scale (e.g. dates).
 `%)o(%` is used for the negation,
 directional evaluation is done via the operators `%[<o]%` and `%[o>]%`.
 
-Eqal      | Not equal  | Less than  | Greater than
+Equal      | Not equal  | Less than  | Greater than
 ----------|------------|------------|----------------
- `%[0]%`  | `%)0(%`    | `%[<0]%`   | `%[0>]%`
+ `%[o]%`  | `%)o(%`    | `%[<o]%`   | `%[o>]%`
 
 ## Operators for discrete variables
 
@@ -185,11 +186,11 @@ CI.D90[1,] %[o]% CI.D90[2,]
 #  TRUE
 
 DATE <- as.Date(c("2000-01-01","2000-02-01", "2000-03-31"))
-DATE %[<]% as.Date(c("2000-01-151", "2000-03-15"))
+DATE %[<]% as.Date(c("2000-01-15", "2000-03-15"))
 # [1]  TRUE FALSE FALSE
-DATE %[]% as.Date(c("2000-01-151", "2000-03-15"))
+DATE %[]% as.Date(c("2000-01-15", "2000-03-15"))
 # [1] FALSE  TRUE FALSE
-DATE %[>]% as.Date(c("2000-01-151", "2000-03-15"))
+DATE %[>]% as.Date(c("2000-01-15", "2000-03-15"))
 # [1] FALSE FALSE  TRUE
 ```
 
