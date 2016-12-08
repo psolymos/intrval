@@ -64,3 +64,86 @@ table(z) / (B + 1)
 sum(mu %[<]% pb[,3:4]) / (B + 1)
 sum(mu %[>]% pb[,3:4]) / (B + 1)
 
+## overlap operators
+
+.intrval3 <-
+function(interval1, interval2, type1, type2)
+{
+    iv1 <- .get_intrval(interval1)
+    iv2 <- .get_intrval(interval2)
+
+    type1 <- match.arg(type1, c("[]", "[)", "(]", "()"))
+    type2 <- match.arg(type2, c("[]", "[)", "(]", "()"))
+
+    if (iv1$a > iv2$a) {
+        tmp <- iv1
+        iv1 <- iv2
+        iv2 <- tmp
+
+        tmp <- type1
+        type1 <- type2
+        type2 <- tmp
+    }
+
+    !.lssthan(iv1$b, iv2,
+        ifelse(substr(type1, 2L, 2L)=="]" && substr(type2, 1L, 1L)=="[",
+        "[", "("))
+}
+
+.get_intrval <- intrval:::.get_intrval
+.lssthan <- intrval:::.lssthan
+.intrval3(c(1,2), c(3,5), "[]", "[]") # FALSE
+.intrval3(c(1,3), c(3,5), "[]", "[]") # TRUE
+.intrval3(c(1,4), c(3,5), "[]", "[]") # TRUE
+.intrval3(c(2,4), c(3,6), "[]", "[]") # TRUE
+.intrval3(c(2,4), c(4,6), "[]", "[]") # TRUE
+.intrval3(c(2,4), c(5,6), "[]", "[]") # FALSE
+.intrval3(c(1,5), c(2,4), "[]", "[]") # TRUE
+.intrval3(c(2,4), c(1,5), "[]", "[]") # TRUE
+
+.intrval3(c(1,2), c(3,5), "()", "()") # FALSE
+.intrval3(c(1,3), c(3,5), "()", "()") # FALSE
+.intrval3(c(1,4), c(3,5), "()", "()") # TRUE
+.intrval3(c(2,4), c(3,6), "()", "()") # TRUE
+.intrval3(c(2,4), c(4,6), "()", "()") # FALSE
+.intrval3(c(2,4), c(5,6), "()", "()") # FALSE
+.intrval3(c(1,5), c(2,4), "()", "()") # TRUE
+.intrval3(c(2,4), c(1,5), "()", "()") # TRUE
+
+## new specials
+
+"%[]o[]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[]", type2="[]")
+"%[]o[)%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[]", type2="[)")
+"%[]o(]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[]", type2="(]")
+"%[]o()%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[]", type2="()")
+
+"%[)o[]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[)", type2="[]")
+"%[)o[)%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[)", type2="[)")
+"%[)o(]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[)", type2="(]")
+"%[)o()%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[)", type2="()")
+
+"%(]o[]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="(]", type2="[]")
+"%(]o[)%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="(]", type2="[)")
+"%(]o(]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="(]", type2="(]")
+"%(]o()%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="(]", type2="()")
+
+"%()o[]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="()", type2="[]")
+"%()o[)%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="()", type2="[)")
+"%()o(]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="()", type2="(]")
+"%()o()%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="()", type2="()")
