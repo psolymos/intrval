@@ -62,3 +62,47 @@
 ## notin/nin/ni - opposite of %in%
 "%ni%" <- function(x, table)
     !(match(x, table, nomatch = 0) > 0)
+
+## specific 2 interval overlap operators
+
+## this is alias for %[o]%
+"%[]o[]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[]", type2="[]")
+"%[]o[)%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[]", type2="[)")
+"%[]o(]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[]", type2="(]")
+"%[]o()%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[]", type2="()")
+
+"%[)o[]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[)", type2="[]")
+"%[)o[)%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[)", type2="[)")
+"%[)o(]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[)", type2="(]")
+"%[)o()%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[)", type2="()")
+
+"%(]o[]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="(]", type2="[]")
+"%(]o[)%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="(]", type2="[)")
+"%(]o(]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="(]", type2="(]")
+"%(]o()%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="(]", type2="()")
+
+"%()o[]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="()", type2="[]")
+"%()o[)%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="()", type2="[)")
+"%()o(]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="()", type2="(]")
+"%()o()%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="()", type2="()")
+
+## alias for %()o()%
+"%(o)%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="()", type2="()")
+
