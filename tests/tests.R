@@ -144,6 +144,13 @@ stopifnot(all(
     !(0 %()% c(0,0)) # FALSE
 ))
 
+## NA handling
+
+x <- c(NA, 1, 1, 1, NA, NA, NA)
+a <- c(2, NA, 2, NA, NA, 1, NA)
+b <- c(2, 2, NA, NA, 1, NA, NA)
+stopifnot(all(is.na(x %[]% list(a, b))))
+
 ## Annette Dobson (1990) "An Introduction to Generalized Linear Models".
 ## Page 9: Plant Weight Data.
 ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)

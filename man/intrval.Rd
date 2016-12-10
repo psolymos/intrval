@@ -101,7 +101,9 @@ instead of treating it as a single 3-level ordered factor.
 }
 \value{
 A logical vector, indicating if \code{x} is in the interval specified.
-Values are \code{TRUE}, \code{FALSE}, or \code{NA}.
+Values are \code{TRUE}, \code{FALSE}, or \code{NA}
+(when any of the 3 values (\code{x} or endpoints in \code{interval})
+is \code{NA}).
 
 The helper function \code{intrval_types}
 can be used to understand and visualize the operators effects.
