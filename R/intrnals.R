@@ -85,3 +85,24 @@ function(interval1, interval2)
     ab <- .get_intrval(interval1)
     .greatrthan(ab$a, interval2, "]")
 }
+
+## this function can be used for general 2-interval comparisons
+.intrval3 <-
+function(interval1, interval2, type1, type2)
+{
+    iv1 <- .get_intrval(interval1)
+    iv2 <- .get_intrval(interval2)
+
+    type1 <- match.arg(type1, c("[]", "[)", "(]", "()"))
+    type2 <- match.arg(type2, c("[]", "[)", "(]", "()"))
+
+    b1 <- ifelse(iv1$a < iv2$a, iv1$b, iv2$b)
+    a2 <- ifelse(iv1$a < iv2$a, iv2$a, iv1$a)
+    type1v <- ifelse(iv1$a < iv2$a, substr(type1, 2L, 2L), substr(type2, 2L, 2L))
+    type2v <- ifelse(iv1$a < iv2$a, substr(type2, 1L, 1L), substr(type1, 1L, 1L))
+
+    ifelse(type1v == "]" & type2v == "[",
+        b1 >= a2,
+        b1 > a2)
+}
+
