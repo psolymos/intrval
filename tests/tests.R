@@ -307,3 +307,55 @@ system.time(list(a2, b2) %[o>]% list(a1, b1))
 
 intrval_types() # print
 intrval_types(1:4) # print
+
+## test for general 2-interval operators
+
+# n=no overlap
+# o=overlap
+# u=upper boundary of interval1 (lhs)
+# l=upper boundary of interval1 (lhs)
+m <- rbind(
+    "n"=c(1,2, 3,5),
+    "u"=c(1,3, 3,5),
+    "o"=c(1,4, 3,5),
+    "o"=c(2,4, 3,6),
+    "u"=c(2,4, 4,6),
+    "n"=c(2,4, 5,6),
+    "o"=c(1,5, 2,4),
+
+    "n"=c(3,5, 1,2),
+    "l"=c(3,5, 1,3),
+    "o"=c(3,5, 1,4),
+    "o"=c(3,6, 2,4),
+    "l"=c(4,6, 2,4),
+    "n"=c(5,6, 2,4),
+    "o"=c(2,4, 1,5))
+
+test_fun <- function(type1="[]", type2="[]") {
+    val <- sapply(1:nrow(m), function(i)
+        .intrval3(m[i,1:2], m[i,3:4], type1, type2))
+    expect <- rep(TRUE, length(val))
+    expect[rownames(m) == "n"] <- FALSE
+    expect[rownames(m) == "u"] <- if (substr(type1, 2L, 2L) == "]" &&
+                                      substr(type2, 1L, 1L) == "[")
+        TRUE else FALSE
+    expect[rownames(m) == "l"] <- if (substr(type1, 1L, 1L) == "[" &&
+                                      substr(type2, 2L, 2L) == "]")
+        TRUE else FALSE
+    rbind(value=val, expect=expect, test=val==expect)
+}
+
+tt <- expand.grid(iv1=c("[]", "[)", "(]", "()"), iv2=c("[]", "[)", "(]", "()"))
+res <- lapply(1:nrow(tt), function(i)
+    test_fun(as.character(tt[i,1]), as.character(tt[i,2])))
+
+tt[which(!sapply(res, function(z) all(z[3,]))),]
+stopifnot(all(sapply(res, function(z) all(z[3,]))))
+
+## degenerate open interval should not overlap
+stopifnot(!.intrval3(c(3,3),c(3,3),"()","()"))
+stopifnot(!.intrval3(c(1,1),c(3,3),"()","()"))
+stopifnot(!.intrval3(c(1,1),c(1,1),"()","[]"))
+stopifnot(!.intrval3(c(1,1),c(3,3),"()","[]"))
+stopifnot(!.intrval3(c(1,1),c(3,3),"[]","()"))
+
