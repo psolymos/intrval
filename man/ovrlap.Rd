@@ -4,8 +4,25 @@
 \alias{\%)o(\%}
 \alias{\%[<o]\%}
 \alias{\%[o>]\%}
+\alias{\%(o)\%}
+\alias{\%[]o[]\%}
+\alias{\%[]o[)\%}
+\alias{\%[]o(]\%}
+\alias{\%[]o()\%}
+\alias{\%[)o[]\%}
+\alias{\%[)o[)\%}
+\alias{\%[)o(]\%}
+\alias{\%[)o()\%}
+\alias{\%(]o[]\%}
+\alias{\%(]o[)\%}
+\alias{\%(]o(]\%}
+\alias{\%(]o()\%}
+\alias{\%()o[]\%}
+\alias{\%()o[)\%}
+\alias{\%()o(]\%}
+\alias{\%()o()\%}
 \title{
-Relational Operators Comparing Two Closed Intervals
+Relational Operators Comparing Two Intervals
 }
 \description{
 Function for evaluating if two closed intervals overlap or not.
@@ -15,6 +32,25 @@ interval1 \%[o]\% interval2
 interval1 \%)o(\% interval2
 interval1 \%[<o]\% interval2
 interval1 \%[o>]\% interval2
+
+interval1 \%(o)\% interval2
+
+interval1 \%[]o[]\% interval2
+interval1 \%[]o[)\% interval2
+interval1 \%[]o(]\% interval2
+interval1 \%[]o()\% interval2
+interval1 \%[)o[]\% interval2
+interval1 \%[)o[)\% interval2
+interval1 \%[)o(]\% interval2
+interval1 \%[)o()\% interval2
+interval1 \%(]o[]\% interval2
+interval1 \%(]o[)\% interval2
+interval1 \%(]o(]\% interval2
+interval1 \%(]o()\% interval2
+interval1 \%()o[]\% interval2
+interval1 \%()o[)\% interval2
+interval1 \%()o(]\% interval2
+interval1 \%()o()\% interval2
 }
 \arguments{
   \item{interval1, interval2}{
@@ -23,8 +59,16 @@ of two (sets) of closed intervals to compare.
 }
 }
 \details{
+The operators define the open/closed nature of the lower/upper
+limits of the intervals on the left and right hand side of the \code{o}
+in the middle.
+
+The overlap of two open intervals
+is evaluated by the \code{\%(o)\%} (alias for \code{\%()o()\%}).
+
 The overlap of two closed intervals, [a1, b1] and [a2, b2],
-is evaluated by the \code{\%[o]\%} operator (a1 <= b1, a2 <= b2).
+is evaluated by the \code{\%[o]\%} (alias for \code{\%[]o[]\%})
+operator (a1 <= b1, a2 <= b2).
 Endpoints can be defined as a vector with two values
 (\code{c(a1, b1)})or can be stored in matrix-like objects or a lists
 in which case comparisons are made element-wise.
@@ -36,7 +80,7 @@ Note: interval endpoints
 are sorted internally thus ensuring the conditions
 a1 <= b1 and a2 <= b2 is not necessary.
 
-\code{\%)o(\%} is used for the negation,
+\code{\%)o(\%} is used for the negation of two closed interval overlap,
 directional evaluation is done via the operators
 \code{\%[<o]\%} and \code{\%[o>]\%}.
 }
@@ -89,6 +133,9 @@ cbind(rep(2,5), rep(3,5)) \%[o]\% list(0:4, 1:5)
 cbind(rep(3,5),rep(4,5)) \%[o]\% cbind(1:5, 2:6)
 cbind(rep(3,5),rep(4,5)) \%[<o]\% cbind(1:5, 2:6)
 cbind(rep(3,5),rep(4,5)) \%[o>]\% cbind(1:5, 2:6)
+
+c(1,3) \%[)o(]\% c(3,4)
+## fixme: add more and meaningful examples, e.g. dates.
 }
 \keyword{manip}
 \keyword{logic}
