@@ -333,7 +333,7 @@ m <- rbind(
 
 test_fun <- function(type1="[]", type2="[]") {
     val <- sapply(1:nrow(m), function(i)
-        .intrval3(m[i,1:2], m[i,3:4], type1, type2))
+        intrval:::.intrval3(m[i,1:2], m[i,3:4], type1, type2))
     expect <- rep(TRUE, length(val))
     expect[rownames(m) == "n"] <- FALSE
     expect[rownames(m) == "u"] <- if (substr(type1, 2L, 2L) == "]" &&
