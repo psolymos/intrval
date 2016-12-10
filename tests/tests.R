@@ -353,9 +353,9 @@ tt[which(!sapply(res, function(z) all(z[3,]))),]
 stopifnot(all(sapply(res, function(z) all(z[3,]))))
 
 ## degenerate open interval should not overlap
-stopifnot(!.intrval3(c(3,3),c(3,3),"()","()"))
-stopifnot(!.intrval3(c(1,1),c(3,3),"()","()"))
-stopifnot(!.intrval3(c(1,1),c(1,1),"()","[]"))
-stopifnot(!.intrval3(c(1,1),c(3,3),"()","[]"))
-stopifnot(!.intrval3(c(1,1),c(3,3),"[]","()"))
+stopifnot(!intrval:::.intrval3(c(3,3),c(3,3),"()","()"))
+stopifnot(!intrval:::.intrval3(c(1,1),c(3,3),"()","()"))
+stopifnot(!intrval:::.intrval3(c(1,1),c(1,1),"()","[]"))
+stopifnot(!intrval:::.intrval3(c(1,1),c(3,3),"()","[]"))
+stopifnot(!intrval:::.intrval3(c(1,1),c(3,3),"[]","()"))
 
