@@ -5,6 +5,7 @@ Version: 0.1-1
 Date: 2016-12-06
 Author: Peter Solymos
 Maintainer: Peter Solymos <solymos@ualberta.ca>
+Suggests: testthat
 Description: Evaluating if values 
   of vectors are within different open/closed intervals
   (`x %[]% c(a, b)`), or if two closed
