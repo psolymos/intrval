@@ -12,10 +12,6 @@ library(testthat)
 
 
 .intrval <- function (x, interval, type) {
-  print(x)
-  print(interval)
-  print(type)
-
   type <- lapply(type, function(x)
     match.arg(x, c("[]", "[)", "(]", "()", "][", "](", ")[", ")(")))
   type <- ifelse(interval[[1]]<=interval[[2]], type, .reverse_type(type))
@@ -111,6 +107,4 @@ expect_false(.intrval3(c(2, 2), c(2, 4), "()", "[]"))
 
 expect_equal( .intrval3(c(2, 4), c(2, 2), "[]", "()"),
               .intrval3(c(2, 2), c(2, 4), "()", "[]") )
-
-
 
