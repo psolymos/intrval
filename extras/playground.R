@@ -64,3 +64,150 @@ table(z) / (B + 1)
 sum(mu %[<]% pb[,3:4]) / (B + 1)
 sum(mu %[>]% pb[,3:4]) / (B + 1)
 
+## overlap operators
+
+## Need a function that sort intervals/types based on lower endpoints
+interval1 <- rbind(c(1,3), c(3,4))
+interval2 <- rbind(c(3,4), c(1,3))
+type1 <- "[]"
+type2 <- "[]"
+
+
+.intrval3 <-
+function(interval1, interval2, type1, type2)
+{
+    iv1 <- .get_intrval(interval1)
+    iv2 <- .get_intrval(interval2)
+
+    type1 <- match.arg(type1, c("[]", "[)", "(]", "()"))
+    type2 <- match.arg(type2, c("[]", "[)", "(]", "()"))
+
+    b1 <- ifelse(iv1$a < iv2$a, iv1$b, iv2$b)
+    a2 <- ifelse(iv1$a < iv2$a, iv2$a, iv1$a)
+    type1v <- ifelse(iv1$a < iv2$a, substr(type1, 2L, 2L), substr(type2, 2L, 2L))
+    type2v <- ifelse(iv1$a < iv2$a, substr(type2, 1L, 1L), substr(type1, 1L, 1L))
+
+    ifelse(type1v == "]" & type2v == "[",
+        b1 >= a2,
+        b1 > a2)
+}
+
+
+## note that LHS and RHS are not sorted
+## interval type1 refers to interval1 and is taken from RHS of 'o' etc
+.intrval3_old <-
+function(interval1, interval2, type1, type2)
+{
+    iv1 <- .get_intrval(interval1)
+    iv2 <- .get_intrval(interval2)
+
+    type1 <- match.arg(type1, c("[]", "[)", "(]", "()"))
+    type2 <- match.arg(type2, c("[]", "[)", "(]", "()"))
+
+    if (iv1$a > iv2$a) { # this evaluation is not vectorized!!!
+        tmp <- iv1
+        iv1 <- iv2
+        iv2 <- tmp
+
+        tmp <- type1
+        type1 <- type2
+        type2 <- tmp
+    }
+
+    !.lssthan(iv1$b, iv2,
+        ifelse(substr(type1, 2L, 2L)=="]" && substr(type2, 1L, 1L)=="[",
+        "[", "("))
+}
+
+.get_intrval <- intrval:::.get_intrval
+.lssthan <- intrval:::.lssthan
+
+## new specials
+
+"%[]o[]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[]", type2="[]")
+"%[]o[)%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[]", type2="[)")
+"%[]o(]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[]", type2="(]")
+"%[]o()%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[]", type2="()")
+
+"%[)o[]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[)", type2="[]")
+"%[)o[)%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[)", type2="[)")
+"%[)o(]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[)", type2="(]")
+"%[)o()%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="[)", type2="()")
+
+"%(]o[]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="(]", type2="[]")
+"%(]o[)%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="(]", type2="[)")
+"%(]o(]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="(]", type2="(]")
+"%(]o()%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="(]", type2="()")
+
+"%()o[]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="()", type2="[]")
+"%()o[)%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="()", type2="[)")
+"%()o(]%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="()", type2="(]")
+"%()o()%" <- function(interval1, interval2)
+    .intrval3(interval1, interval2, type1="()", type2="()")
+
+## here is a test
+
+# n=no overlap
+# o=overlap
+# u=upper boundary of interval1 (lhs)
+# l=upper boundary of interval1 (lhs)
+m <- rbind(
+    "n"=c(1,2, 3,5),
+    "u"=c(1,3, 3,5),
+    "o"=c(1,4, 3,5),
+    "o"=c(2,4, 3,6),
+    "u"=c(2,4, 4,6),
+    "n"=c(2,4, 5,6),
+    "o"=c(1,5, 2,4),
+
+    "n"=c(3,5, 1,2),
+    "l"=c(3,5, 1,3),
+    "o"=c(3,5, 1,4),
+    "o"=c(3,6, 2,4),
+    "l"=c(4,6, 2,4),
+    "n"=c(5,6, 2,4),
+    "o"=c(2,4, 1,5))
+
+test_fun <- function(type1="[]", type2="[]") {
+    val <- sapply(1:nrow(m), function(i)
+        .intrval3(m[i,1:2], m[i,3:4], type1, type2))
+    expect <- rep(TRUE, length(val))
+    expect[rownames(m) == "n"] <- FALSE
+    expect[rownames(m) == "u"] <- if (substr(type1, 2L, 2L) == "]" &&
+                                      substr(type2, 1L, 1L) == "[")
+        TRUE else FALSE
+    expect[rownames(m) == "l"] <- if (substr(type1, 1L, 1L) == "[" &&
+                                      substr(type2, 2L, 2L) == "]")
+        TRUE else FALSE
+    rbind(value=val, expect=expect, test=val==expect)
+}
+
+tt <- expand.grid(iv1=c("[]", "[)", "(]", "()"), iv2=c("[]", "[)", "(]", "()"))
+res <- lapply(1:nrow(tt), function(i)
+    test_fun(as.character(tt[i,1]), as.character(tt[i,2])))
+
+sapply(res, function(z) all(z[3,]))
+tt[which(!sapply(res, function(z) all(z[3,]))),]
+
+.intrval3(c(3,5),c(1,3),"(]","[]")
+
+.intrval3(c(3,3),c(3,3),"()","()")
+.intrval3(c(1,1),c(3,3),"()","()")
+.intrval3(c(1,1),c(1,1),"()","[]")
+.intrval3(c(1,1),c(3,3),"()","[]")
+.intrval3(c(1,1),c(3,3),"[]","()")
