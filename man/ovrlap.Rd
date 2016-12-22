@@ -5,6 +5,9 @@
 \alias{\%[<o]\%}
 \alias{\%[o>]\%}
 \alias{\%(o)\%}
+\alias{\%]o[\%}
+\alias{\%(<o)\%}
+\alias{\%(o>)\%}
 \alias{\%[]o[]\%}
 \alias{\%[]o[)\%}
 \alias{\%[]o(]\%}
@@ -34,6 +37,9 @@ interval1 \%[<o]\% interval2
 interval1 \%[o>]\% interval2
 
 interval1 \%(o)\% interval2
+interval1 \%]o[\% interval2
+interval1 \%(<o)\% interval2
+interval1 \%(o>)\% interval2
 
 interval1 \%[]o[]\% interval2
 interval1 \%[]o[)\% interval2
@@ -63,9 +69,6 @@ The operators define the open/closed nature of the lower/upper
 limits of the intervals on the left and right hand side of the \code{o}
 in the middle.
 
-The overlap of two open intervals
-is evaluated by the \code{\%(o)\%} (alias for \code{\%()o()\%}).
-
 The overlap of two closed intervals, [a1, b1] and [a2, b2],
 is evaluated by the \code{\%[o]\%} (alias for \code{\%[]o[]\%})
 operator (a1 <= b1, a2 <= b2).
@@ -79,10 +82,18 @@ least on ordinal scale (e.g. dates), see Examples.
 Note: interval endpoints
 are sorted internally thus ensuring the conditions
 a1 <= b1 and a2 <= b2 is not necessary.
-
 \code{\%)o(\%} is used for the negation of two closed interval overlap,
 directional evaluation is done via the operators
 \code{\%[<o]\%} and \code{\%[o>]\%}.
+
+The overlap of two open intervals
+is evaluated by the \code{\%(o)\%} (alias for \code{\%()o()\%}).
+\code{\%]o[\%} is used for the negation of two open interval overlap,
+directional evaluation is done via the operators
+\code{\%(<o)\%} and \code{\%(o>)\%}.
+
+Overlap operators with mixed endpoint do not have
+negation and directional counterparts.
 }
 \value{
 A logical vector, indicating if \code{interval1} overlaps \code{interval2}.
@@ -130,12 +141,38 @@ data.frame(a=0:4, b=1:5) \%[o]\% c(2:3)
 list(0:4, 1:5) \%[o]\% cbind(rep(2,5), rep(3,5))
 cbind(rep(2,5), rep(3,5)) \%[o]\% list(0:4, 1:5)
 
-cbind(rep(3,5),rep(4,5)) \%[o]\% cbind(1:5, 2:6)
+cbind(rep(3,5),rep(4,5)) \%)o(\% cbind(1:5, 2:6)
 cbind(rep(3,5),rep(4,5)) \%[<o]\% cbind(1:5, 2:6)
 cbind(rep(3,5),rep(4,5)) \%[o>]\% cbind(1:5, 2:6)
 
-c(1,3) \%[)o(]\% c(3,4)
-## fixme: add more and meaningful examples, e.g. dates.
+## open intervals
+
+list(0:4, 1:5) \%(o)\% cbind(rep(2,5), rep(3,5))
+cbind(rep(2,5), rep(3,5)) \%(o)\% list(0:4, 1:5)
+
+cbind(rep(3,5),rep(4,5)) \%]o[\% cbind(1:5, 2:6)
+cbind(rep(3,5),rep(4,5)) \%(<o)\% cbind(1:5, 2:6)
+cbind(rep(3,5),rep(4,5)) \%(o>)\% cbind(1:5, 2:6)
+
+dt1 <- as.Date(c("2000-01-01", "2000-03-15"))
+dt2 <- as.Date(c("2000-03-15", "2000-06-07"))
+
+dt1 \%[]o[]\% dt2
+dt1 \%[]o[)\% dt2
+dt1 \%[]o(]\% dt2
+dt1 \%[]o()\% dt2
+dt1 \%[)o[]\% dt2
+dt1 \%[)o[)\% dt2
+dt1 \%[)o(]\% dt2
+dt1 \%[)o()\% dt2
+dt1 \%(]o[]\% dt2
+dt1 \%(]o[)\% dt2
+dt1 \%(]o(]\% dt2
+dt1 \%(]o()\% dt2
+dt1 \%()o[]\% dt2
+dt1 \%()o[)\% dt2
+dt1 \%()o(]\% dt2
+dt1 \%()o()\% dt2
 }
 \keyword{manip}
 \keyword{logic}

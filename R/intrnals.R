@@ -61,29 +61,29 @@ function(x, interval, type)
 
 ## a1 %[]% c(a2, b2) | b1 %[]% c(a2, b2)
 .intrval2 <-
-function(interval1, interval2, overlap=TRUE)
+function(interval1, interval2, overlap=TRUE, closed=TRUE)
 {
     ab <- .get_intrval(interval1)
-    A <- .greatrthan(ab$a, interval2, "]")
-    B <- .lssthan(ab$b, interval2, "[")
+    A <- .greatrthan(ab$a, interval2, if (closed) "]" else ")")
+    B <- .lssthan(ab$b, interval2, if (closed) "[" else "(")
     if (overlap)
         !(A | B) else (A | B)
 }
 
 ## b1 < a2
 .lssthan2 <-
-function(interval1, interval2)
+function(interval1, interval2, closed=TRUE)
 {
     ab <- .get_intrval(interval1)
-    .lssthan(ab$b, interval2, "[")
+    .lssthan(ab$b, interval2, if (closed) "[" else "(")
 }
 
 ## a1 > b2
 .greatrthan2 <-
-function(interval1, interval2)
+function(interval1, interval2, closed=TRUE)
 {
     ab <- .get_intrval(interval1)
-    .greatrthan(ab$a, interval2, "]")
+    .greatrthan(ab$a, interval2, if (closed) "]" else ")")
 }
 
 ## this function can be used for general 2-interval comparisons

@@ -4,7 +4,7 @@ library(intrval)
 
 ## run examples with \dontrun sections
 
-help_pages <- c("%[]%", "%ni%")
+help_pages <- c("%[]%", "%[o]%", "%ni%")
 
 for (i in help_pages) {
     cat("\n\n---------- intrval example:", i, "----------\n\n")
@@ -305,10 +305,19 @@ system.time(x %][% list(a1, b1))
 system.time(x %(<)% list(a1, b1))
 system.time(x %(>)% list(a1, b1))
 
-system.time(list(a2, b2) %[o]% list(a1, b1))
+system.time(tmp1 <- list(a2, b2) %[o]% list(a1, b1))
+system.time(tmp2 <- list(a2, b2) %[]o[]% list(a1, b1))
+stopifnot(all(tmp1==tmp2))
 system.time(list(a2, b2) %)o(% list(a1, b1))
 system.time(list(a2, b2) %[<o]% list(a1, b1))
 system.time(list(a2, b2) %[o>]% list(a1, b1))
+
+system.time(tmp1 <- list(a2, b2) %(o)% list(a1, b1))
+system.time(tmp2 <- list(a2, b2) %()o()% list(a1, b1))
+stopifnot(all(tmp1==tmp2))
+system.time(list(a2, b2) %]o[% list(a1, b1))
+system.time(list(a2, b2) %(<o)% list(a1, b1))
+system.time(list(a2, b2) %(o>)% list(a1, b1))
 
 ## helper function
 
