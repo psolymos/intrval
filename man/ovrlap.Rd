@@ -28,7 +28,7 @@
 Relational Operators Comparing Two Intervals
 }
 \description{
-Function for evaluating if two closed intervals overlap or not.
+Functions for evaluating if two intervals overlap or not.
 }
 \usage{
 interval1 \%[o]\% interval2

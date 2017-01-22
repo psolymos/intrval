@@ -1,8 +1,9 @@
 # User-visible changes in the intrval R package
 
-## Version 0.1-1 -- Dec 6, 2016
+## Version 0.1-1 -- Jan 21, 2017
 
 * `NA` handling inconsistency fixed and documented (#8).
+* All possible interval-to-interval operators added (#6).
 
 ## Version 0.1-0 -- Dec 5, 2016
 

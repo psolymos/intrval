@@ -2,14 +2,14 @@ Package: intrval
 Type: Package
 Title: Relational Operators for Intervals
 Version: 0.1-1
-Date: 2016-12-06
+Date: 2017-01-21
 Author: Peter Solymos
 Maintainer: Peter Solymos <solymos@ualberta.ca>
 Suggests: testthat
 Description: Evaluating if values 
   of vectors are within different open/closed intervals
   (`x %[]% c(a, b)`), or if two closed
-  intervals overlap (`c(a1, b1) %[o]% c(a2, b2)`).
+  intervals overlap (`c(a1, b1) %[]o[]% c(a2, b2)`).
   Operators for negation and directional relations also implemented.
 License: GPL-2
 URL: https://github.com/psolymos/intrval
