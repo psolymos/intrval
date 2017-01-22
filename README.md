@@ -8,7 +8,7 @@
 
 Evaluating if values of vectors are within different open/closed intervals
 (`x %[]% c(a, b)`), or if two closed
-intervals overlap (`c(a1, b1) %[o]% c(a2, b2)`).
+intervals overlap (`c(a1, b1) %[]o[]% c(a2, b2)`).
 Operators for negation and directional relations also implemented.
 
 ![](https://github.com/psolymos/intrval/raw/master/extras/intrval.png)
@@ -50,7 +50,7 @@ Operator | Expression       | Condition
 
 ### Negation and directional relations
 
-Equal     | Not equal | Less than | Greater than
+Equal    | Not equal | Less than | Greater than
 ---------|-----------|-----------|----------------
  `%[]%`  | `%)(%`    | `%[<]%`   | `%[>]%`
  `%[)%`  | `%)[%`    | `%[<)%`   | `%[>)%`
@@ -59,20 +59,29 @@ Equal     | Not equal | Less than | Greater than
 
 ## Interval-to-interval relations
 
-The overlap of two closed intervals, [`a1`, `b1`] and [`a2`, `b2`],
-is evaluated by the `%[o]%` operator (`a1 <= b1`, `a2 <= b2`).
+The operators define the open/closed nature of the lower/upper
+limits of the intervals on the left and right hand side of the `o`
+in the middle.
+
+The overlap of two closed intervals, [a1, b1] and [a2, b2],
+is evaluated by the `%[o]%` (alias for `%[]o[]%`)
+operator (`a1 <= b1`, `a2 <= b2`).
 Endpoints can be defined as a vector with two values
 (`c(a1, b1)`)or can be stored in matrix-like objects or a lists
 in which case comparisons are made element-wise.
+If lengths do not match, shorter objects are recycled.
+These value-to-interval operators work for numeric (integer, real)
+and ordered vectors, and object types which are measured at
+least on ordinal scale (e.g. dates), see Examples.
 Note: interval endpoints
 are sorted internally thus ensuring the conditions
 `a1 <= b1` and `a2 <= b2` is not necessary.
 
 ```R
-c(2, 3) %[o]% c(0, 1)
-list(0:4, 1:5) %[o]% c(2, 3)
-cbind(0:4, 1:5) %[o]% c(2, 3)
-data.frame(a=0:4, b=1:5) %[o]% c(2, 3)
+c(2, 3) %[]o[]% c(0, 1)
+list(0:4, 1:5) %[]o[]% c(2, 3)
+cbind(0:4, 1:5) %[]o[]% c(2, 3)
+data.frame(a=0:4, b=1:5) %[]o[]% c(2, 3)
 ```
 
 If lengths do not match, shorter objects are recycled.
@@ -80,12 +89,29 @@ These value-to-interval operators work for numeric (integer, real)
 and ordered vectors, and object types which are measured at
 least on ordinal scale (e.g. dates).
 
-`%)o(%` is used for the negation,
-directional evaluation is done via the operators `%[<o]%` and `%[o>]%`.
+               | Int. 2: `[]` | Int. 2: `[)` | Int. 2: `(]` | Int. 2: `()`
+---------------|--------------|--------------|--------------|--------------
+*Int. 1:* `[]` | `%[]o[]%`    | `%[]o[)%`    | `%[]o(]%`    | `%[]o()%`
+*Int. 1:* `[)` | `%[)o[]%`    | `%[)o[)%`    | `%[)o(]%`    | `%[)o()%`
+*Int. 1:* `(]` | `%(]o[]%`    | `%(]o[)%`    | `%(]o(]%`    | `%(]o()%`
+*Int. 1:* `()` | `%()o[]%`    | `%()o[)%`    | `%()o(]%`    | `%()o()%`
 
-Equal      | Not equal  | Less than  | Greater than
+`%)o(%` is used for the negation of two closed interval overlap,
+directional evaluation is done via the operators
+`%[<o]%` and `%[o>]%`.
+The overlap of two open intervals
+is evaluated by the `%(o)%` (alias for `%()o()%`).
+`%]o[%` is used for the negation of two open interval overlap,
+directional evaluation is done via the operators
+`%(<o)%` and `%(o>)%`.
+
+Equal     | Not equal  | Less than  | Greater than
 ----------|------------|------------|----------------
  `%[o]%`  | `%)o(%`    | `%[<o]%`   | `%[o>]%`
+ `%(o)%`  | `%]o[%`    | `%(<o)%`   | `%(o>)%`
+
+Overlap operators with mixed endpoint do not have
+negation and directional counterparts.
 
 ## Operators for discrete variables
 
@@ -104,6 +130,7 @@ install.packages("intrval")
 Install development version from GitHub:
 
 ```R
+if (!requireNamespace("devtools")) install.packages("devtools")
 devtools::install_github("psolymos/intrval")
 ```
 
@@ -156,7 +183,6 @@ plot(x, pch = 19, col = x %)(% iv +1, type = "b", ylim = mu + 5 * c(-SD, SD),
     main = "Shewhart quality control chart\ndiameter of piston rings")
 abline(h = mu)
 abline(h = iv, lty = 2)
-
 
 ## Annette Dobson (1990) "An Introduction to Generalized Linear Models".
 ## Page 9: Plant Weight Data.
