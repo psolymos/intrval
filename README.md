@@ -63,6 +63,13 @@ The operators define the open/closed nature of the lower/upper
 limits of the intervals on the left and right hand side of the `o`
 in the middle.
 
+                 | Int. 2: `[]` | Int. 2: `[)` | Int. 2: `(]` | Int. 2: `()`
+-----------------|--------------|--------------|--------------|--------------
+**Int. 1: `[]`** | `%[]o[]%`    | `%[]o[)%`    | `%[]o(]%`    | `%[]o()%`
+**Int. 1: `[)`** | `%[)o[]%`    | `%[)o[)%`    | `%[)o(]%`    | `%[)o()%`
+**Int. 1: `(]`** | `%(]o[]%`    | `%(]o[)%`    | `%(]o(]%`    | `%(]o()%`
+**Int. 1: `()`** | `%()o[]%`    | `%()o[)%`    | `%()o(]%`    | `%()o()%`
+
 The overlap of two closed intervals, [a1, b1] and [a2, b2],
 is evaluated by the `%[o]%` (alias for `%[]o[]%`)
 operator (`a1 <= b1`, `a2 <= b2`).
@@ -88,13 +95,6 @@ If lengths do not match, shorter objects are recycled.
 These value-to-interval operators work for numeric (integer, real)
 and ordered vectors, and object types which are measured at
 least on ordinal scale (e.g. dates).
-
-               | Int. 2: `[]` | Int. 2: `[)` | Int. 2: `(]` | Int. 2: `()`
----------------|--------------|--------------|--------------|--------------
-*Int. 1:* `[]` | `%[]o[]%`    | `%[]o[)%`    | `%[]o(]%`    | `%[]o()%`
-*Int. 1:* `[)` | `%[)o[]%`    | `%[)o[)%`    | `%[)o(]%`    | `%[)o()%`
-*Int. 1:* `(]` | `%(]o[]%`    | `%(]o[)%`    | `%(]o(]%`    | `%(]o()%`
-*Int. 1:* `()` | `%()o[]%`    | `%()o[)%`    | `%()o(]%`    | `%()o()%`
 
 `%)o(%` is used for the negation of two closed interval overlap,
 directional evaluation is done via the operators
