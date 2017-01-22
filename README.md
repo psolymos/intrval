@@ -218,5 +218,16 @@ DATE %[]% as.Date(c("2000-01-15", "2000-03-15"))
 # [1] FALSE  TRUE FALSE
 DATE %[>]% as.Date(c("2000-01-15", "2000-03-15"))
 # [1] FALSE FALSE  TRUE
+
+dt1 <- as.Date(c("2000-01-01", "2000-03-15"))
+dt2 <- as.Date(c("2000-03-15", "2000-06-07"))
+dt1 %[]o[]% dt2
+# [1] TRUE
+dt1 %[]o[)% dt2
+# [1] TRUE
+dt1 %[]o(]% dt2
+# [1] FALSE
+dt1 %[]o()% dt2
+# [1] FALSE
 ```
 
