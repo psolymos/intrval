@@ -352,9 +352,11 @@ test_fun <- function(type1="[]", type2="[]") {
         intrval:::.intrval3(m[i,1:2], m[i,3:4], type1, type2))
     expect <- rep(TRUE, length(val))
     expect[rownames(m) == "n"] <- FALSE
+    ## *]o[*
     expect[rownames(m) == "u"] <- if (substr(type1, 2L, 2L) == "]" &&
                                       substr(type2, 1L, 1L) == "[")
         TRUE else FALSE
+    ## [*o*]
     expect[rownames(m) == "l"] <- if (substr(type1, 1L, 1L) == "[" &&
                                       substr(type2, 2L, 2L) == "]")
         TRUE else FALSE
