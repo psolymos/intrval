@@ -31,6 +31,8 @@ Peter Solymos <solymos@ualberta.ca>
 All the opposite of what is written for \code{\link{\%in\%}}.
 
 See relational operators for intervals: \code{\link{\%[]\%}}.
+
+See \code{\link{Syntax}} for operator precedence.
 }
 \examples{
 1:10 \%ni\% c(1,3,5,9)

@@ -122,6 +122,8 @@ See \code{\link{factor}} for the behavior with factor arguments.
 See also \code{\link{\%in\%}} for value matching
 and \code{\link{\%\%}} for negated value matching
 for factors.
+
+See \code{\link{Syntax}} for operator precedence.
 }
 \examples{
 ## motivating example from example(lm)
@@ -176,6 +178,12 @@ f <- as.POSIXlt(dt)$hour \%[]\% c(0, 11)
 plot(sin(x) ~ dt, type="l", col="grey",
     main = "Filtering date/time objects")
 points(sin(x) ~ dt, pch = 19, col = f + 1)
+
+## watch precedence
+(2 * 1:5) \%[]\% (c(2, 3) * 2)
+2 * 1:5 \%[]\% (c(2, 3) * 2)
+(2 * 1:5) \%[]\% c(2, 3) * 2
+2 * 1:5 \%[]\% c(2, 3) * 2
 }
 \keyword{manip}
 \keyword{logic}

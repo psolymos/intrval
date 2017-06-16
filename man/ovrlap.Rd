@@ -112,6 +112,8 @@ See \code{\link{factor}} for the behavior with factor arguments.
 See also \code{\link{\%in\%}} for value matching
 and \code{\link{\%ni\%}} for negated value matching
 for factors.
+
+See \code{\link{Syntax}} for operator precedence.
 }
 \examples{
 ## motivating examples from example(lm)
@@ -173,6 +175,12 @@ dt1 \%()o[]\% dt2
 dt1 \%()o[)\% dt2
 dt1 \%()o(]\% dt2
 dt1 \%()o()\% dt2
+
+## watch precedence
+(2 * c(1, 3)) \%[o]\% (c(2, 4) * 2)
+(2 * c(1, 3)) \%[o]\% c(2, 4) * 2
+2 * c(1, 3) \%[o]\% (c(2, 4) * 2)
+2 * c(1, 3) \%[o]\% c(2, 4) * 2
 }
 \keyword{manip}
 \keyword{logic}
