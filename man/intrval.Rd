@@ -1,4 +1,5 @@
 \name{intrval}
+\alias{intrval}
 \alias{interval}
 \alias{\%[]\%}
 \alias{\%[)\%}

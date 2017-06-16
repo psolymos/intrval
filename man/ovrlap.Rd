@@ -1,4 +1,5 @@
 \name{ovrlap}
+\alias{ovrlap}
 \alias{overlap}
 \alias{\%[o]\%}
 \alias{\%)o(\%}
