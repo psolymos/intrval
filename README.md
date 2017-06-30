@@ -63,7 +63,7 @@ The operators define the open/closed nature of the lower/upper
 limits of the intervals on the left and right hand side of the `o`
 in the middle.
 
-x                | Int. 2: `[]` | Int. 2: `[)` | Int. 2: `(]` | Int. 2: `()`
+Intervals        | Int. 2: `[]` | Int. 2: `[)` | Int. 2: `(]` | Int. 2: `()`
 -----------------|--------------|--------------|--------------|--------------
 **Int. 1: `[]`** | `%[]o[]%`    | `%[]o[)%`    | `%[]o(]%`    | `%[]o()%`
 **Int. 1: `[)`** | `%[)o[]%`    | `%[)o[)%`    | `%[)o(]%`    | `%[)o()%`
