@@ -5,6 +5,7 @@
 [![Linux build Status](https://travis-ci.org/psolymos/intrval.svg?branch=master)](https://travis-ci.org/psolymos/intrval)
 [![Windows build status](https://ci.appveyor.com/api/projects/status/a34rcucks4jn7niq?svg=true)](https://ci.appveyor.com/project/psolymos/intrval)
 [![Code coverage status](https://codecov.io/gh/psolymos/intrval/branch/master/graph/badge.svg)](https://codecov.io/gh/psolymos/intrval)
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
 Evaluating if values of vectors are within different open/closed intervals
 (`x %[]% c(a, b)`), or if two closed
@@ -12,6 +13,25 @@ intervals overlap (`c(a1, b1) %[]o[]% c(a2, b2)`).
 Operators for negation and directional relations also implemented.
 
 ![](https://github.com/psolymos/intrval/raw/master/extras/intrval.png)
+
+## Install
+
+Install from CRAN:
+
+```R
+install.packages("intrval")
+```
+
+Install development version from GitHub:
+
+```R
+if (!requireNamespace("devtools")) install.packages("devtools")
+devtools::install_github("psolymos/intrval")
+```
+
+User visible changes are listed in the [NEWS](https://github.com/psolymos/intrval/blob/master/NEWS.md) file.
+
+Use the [issue tracker](https://github.com/psolymos/intrval/issues) to report a problem.
 
 ## Value-to-interval relations
 
@@ -118,32 +138,6 @@ negation and directional counterparts.
 The previous operators will return `NA` for unordered factors.
 Set overlap can be evaluated by the base `%in%` operator and its negation
 `%ni%`.
-
-## Versions
-
-Install from CRAN:
-
-```R
-install.packages("intrval")
-```
-
-Install development version from GitHub:
-
-```R
-if (!requireNamespace("devtools")) install.packages("devtools")
-devtools::install_github("psolymos/intrval")
-```
-
-User visible changes are listed in the [NEWS](https://github.com/psolymos/intrval/blob/master/NEWS.md) file.
-
-## Report a problem
-
-Use the [issue tracker](https://github.com/psolymos/intrval/issues)
-to report a problem.
-
-## License
-
-[GPL-2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
 ## Examples
 
