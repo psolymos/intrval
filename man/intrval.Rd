@@ -101,13 +101,13 @@ This implies 2 conditional logical evaluations
 instead of treating it as a single 3-level ordered factor.
 }
 \value{
-A logical vector, indicating if \code{x} is in the interval specified.
+A logical vector, indicating if \code{x} is in the specified interval.
 Values are \code{TRUE}, \code{FALSE}, or \code{NA}
 (when any of the 3 values (\code{x} or endpoints in \code{interval})
-is \code{NA}).
+are \code{NA}).
 
 The helper function \code{intrval_types}
-can be used to understand and visualize the operators effects.
+can be used to understand and visualize the operators' effects.
 It returns a matrix explaining the properties of the operators.
 }
 \author{
