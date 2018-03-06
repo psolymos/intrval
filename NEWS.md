@@ -1,6 +1,6 @@
 # User-visible changes in the intrval R package
 
-## Version 0.1-2 -- July 3, 2017
+## Version 0.1-2 -- March 6, 2018
 
 *
 

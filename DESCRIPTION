@@ -1,11 +1,11 @@
 Package: intrval
 Type: Package
 Title: Relational Operators for Intervals
-Version: 0.1-1
-Date: 2017-01-21
+Version: 0.1-2
+Date: 2018-03-06
 Author: Peter Solymos
 Maintainer: Peter Solymos <solymos@ualberta.ca>
-Description: Evaluating if values 
+Description: Evaluating if values
   of vectors are within different open/closed intervals
   (`x %[]% c(a, b)`), or if two closed
   intervals overlap (`c(a1, b1) %[]o[]% c(a2, b2)`).
