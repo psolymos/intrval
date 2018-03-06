@@ -145,8 +145,9 @@ Set overlap can be evaluated by the base `%in%` operator and its negation
 
 ![](https://github.com/psolymos/intrval/raw/master/extras/examples.png)
 
+### Bounding box
+
 ```R
-## bounding box
 set.seed(1)
 n <- 10^4
 x <- runif(n, -2, 2)
@@ -159,16 +160,23 @@ plot(x, y, pch = 19, cex = 0.25, col = iv1 + iv2 + 1,
     main = "Intersecting bounding boxes")
 plot(x, y, pch = 19, cex = 0.25, col = iv3 + 1,
      main = "Deck the halls:\ndistance range from center")
+```
 
-## time series filtering
+### Time series filtering
+
+```R
 x <- seq(0, 4*24*60*60, 60*60)
 dt <- as.POSIXct(x, origin="2000-01-01 00:00:00")
 f <- as.POSIXlt(dt)$hour %[]% c(0, 11)
 plot(sin(x) ~ dt, type="l", col="grey",
     main = "Filtering date/time objects")
 points(sin(x) ~ dt, pch = 19, col = f + 1)
+```
 
-## QCC
+### Quality control chart (QCC)
+
+
+```R
 library(qcc)
 data(pistonrings)
 mu <- mean(pistonrings$diameter[pistonrings$trial])
@@ -179,7 +187,11 @@ plot(x, pch = 19, col = x %)(% iv +1, type = "b", ylim = mu + 5 * c(-SD, SD),
     main = "Shewhart quality control chart\ndiameter of piston rings")
 abline(h = mu)
 abline(h = iv, lty = 2)
+```
 
+### Confidence intervals and hypothesys testing
+
+```R
 ## Annette Dobson (1990) "An Introduction to Generalized Linear Models".
 ## Page 9: Plant Weight Data.
 ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
@@ -206,7 +218,11 @@ lm.D90 <- lm(weight ~ group - 1) # omitting intercept
 CI.D90[1,] %[o]% CI.D90[2,]
 # 2.5 %
 #  TRUE
+```
 
+### Dates
+
+```R
 DATE <- as.Date(c("2000-01-01","2000-02-01", "2000-03-31"))
 DATE %[<]% as.Date(c("2000-01-15", "2000-03-15"))
 # [1]  TRUE FALSE FALSE
@@ -225,8 +241,11 @@ dt1 %[]o(]% dt2
 # [1] FALSE
 dt1 %[]o()% dt2
 # [1] FALSE
+```
 
-## watch precedence
+### Watch precedence!
+
+```R
 (2 * 1:5) %[]% (c(2, 3) * 2)
 # [1] FALSE  TRUE  TRUE FALSE FALSE
 2 * 1:5 %[]% (c(2, 3) * 2)
@@ -237,3 +256,61 @@ dt1 %[]o()% dt2
 # [1] 0 4 4 0 0
 ```
 
+## Shiny example
+
+![](https://github.com/psolymos/intrval/raw/master/extras/shiny.gif)
+
+```R
+library(shiny)
+library(intrval)
+
+## data for bounding box
+set.seed(1)
+n <- 10^4
+x <- round(runif(n, -2, 2), 2)
+y <- round(runif(n, -2, 2), 2)
+d <- round(sqrt(x^2 + y^2), 2)
+
+## UI function
+ui <- fluidPage(
+  titlePanel("intrval example with shiny"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("bb_x", "x value:",
+        min=min(x), max=max(x), value=range(x), 
+        step=round(diff(range(x))/20, 1)
+      ),
+      sliderInput("bb_y", "y value:",
+        min = min(y), max = max(y), value = range(y),
+        step=round(diff(range(y))/20, 1)
+      ),
+      sliderInput("bb_d", "radial distance:",
+        min = 0, max = max(d), value = c(0, max(d)/2),
+        step=round(max(d)/20, 1)
+      )
+    ),
+    mainPanel(
+      plotOutput("plot")
+    )
+  )
+)
+
+# Server logic
+server <- function(input, output) {
+  output$plot <- renderPlot({
+    iv1 <- x %[]% input$bb_x & y %[]% input$bb_y
+    iv2 <- x %[]% input$bb_y & y %[]% input$bb_x
+    iv3 <- d %()% input$bb_d
+    op <- par(mfrow=c(1,2))
+    plot(x, y, pch = 19, cex = 0.25, col = iv1 + iv2 + 3,
+        main = "Intersecting bounding boxes")
+    plot(x, y, pch = 19, cex = 0.25, col = iv3 + 1,
+         main = "Deck the halls:\ndistance range from center")
+    
+    par(op)
+  })
+}
+
+## Run shiny app
+if (interactive()) shinyApp(ui, server)
+```
