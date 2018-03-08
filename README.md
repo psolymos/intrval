@@ -307,7 +307,6 @@ if (interactive()) shinyApp(ui, server)
 library(shiny)
 library(intrval)
 
-## data for bounding box
 set.seed(1)
 n <- 10^4
 x <- round(runif(n, -2, 2), 2)
@@ -349,7 +348,6 @@ server <- function(input, output) {
         main = "Intersecting bounding boxes")
     plot(x, y, pch = 19, cex = 0.25, col = iv3 + 1,
          main = "Deck the halls:\ndistance range from center")
-    
     par(op)
   })
 }
