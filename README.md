@@ -138,8 +138,8 @@ negation and directional counterparts.
 ## Operators for discrete variables
 
 The previous operators will return `NA` for unordered factors.
-Set overlap can be evaluated by the base `%in%` operator and its negation
-`%ni%`.
+Set overlap can be evaluated by the **base** `%in%` operator and 
+its negation `%ni%` (as in *n*ot *i*n, the opposite of in).
 
 ## Examples
 
