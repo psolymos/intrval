@@ -261,7 +261,7 @@ dt1 %[]o()% dt2
 
 Find the math [here](http://www.jstatsoft.org/v16/c02),
 as implemented in the package 
-[*truncdist*](https://CRAN.R-project.org/package=truncdist).
+[**truncdist**](https://CRAN.R-project.org/package=truncdist).
 
 ```R
 dtrunc <- function(x, ..., distr, lwr=-Inf, upr=Inf) {
