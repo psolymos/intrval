@@ -175,7 +175,6 @@ points(sin(x) ~ dt, pch = 19, col = f + 1)
 
 ### Quality control chart (QCC)
 
-
 ```R
 library(qcc)
 data(pistonrings)
@@ -254,6 +253,30 @@ dt1 %[]o()% dt2
 # [1] 2 0 0 0 0
 2 * 1:5 %[]% c(2, 3) * 2
 # [1] 0 4 4 0 0
+```
+
+### Truncated distributions
+
+![](https://github.com/psolymos/intrval/raw/master/extras/dtrunc.png)
+
+Find the math [here](http://www.jstatsoft.org/v16/c02),
+as implemented in the package 
+[*truncdist*](https://CRAN.R-project.org/package=truncdist).
+
+```R
+dtrunc <- function(x, ..., distr, lwr=-Inf, upr=Inf) {
+    f <- get(paste0("d", distr), mode = "function")
+    F <- get(paste0("p", distr), mode = "function")
+    Fx_lwr <- F(lwr, ..., log=FALSE)
+    Fx_upr <- F(upr, ..., log=FALSE)
+    fx     <- f(x,   ..., log=FALSE)
+    fx / (Fx_upr - Fx_lwr) * (x %[]% c(lwr, upr))
+}
+n <- 10^4
+curve(dtrunc(x, distr="norm"), -2.5, 2.5, ylim=c(0, 2), ylab="f(x)")
+curve(dtrunc(x, distr="norm", lwr=-0.5, upr=0.1), add=TRUE, col=4, n=n)
+curve(dtrunc(x, distr="norm", lwr=-0.75, upr=0.25), add=TRUE, col=3, n=n)
+curve(dtrunc(x, distr="norm", lwr=-1, upr=1), add=TRUE, col=2, n=n)
 ```
 
 ### Shiny example 1: regular slider
