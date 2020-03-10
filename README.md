@@ -188,7 +188,7 @@ abline(h = mu)
 abline(h = iv, lty = 2)
 ```
 
-### Confidence intervals and hypothesys testing
+### Confidence intervals and hypothesis testing
 
 ```R
 ## Annette Dobson (1990) "An Introduction to Generalized Linear Models".
