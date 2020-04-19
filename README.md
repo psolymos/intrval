@@ -8,6 +8,7 @@
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![Research software impact](http://depsy.org/api/package/cran/intrval/badge.svg)](http://depsy.org/package/r/intrval)
 [![Github Stars](https://img.shields.io/github/stars/psolymos/intrval.svg?style=social&label=GitHub)](https://github.com/psolymos/intrval)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpsolymos%2Fintrval.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpsolymos%2Fintrval?ref=badge_shield)
 
 Evaluating if values of vectors are within different open/closed intervals
 (`x %[]% c(a, b)`), or if two closed
@@ -378,3 +379,7 @@ server <- function(input, output) {
 ## Run shiny app
 if (interactive()) shinyApp(ui, server)
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpsolymos%2Fintrval.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpsolymos%2Fintrval?ref=badge_large)
