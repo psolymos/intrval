@@ -2,7 +2,7 @@ Package: intrval
 Type: Package
 Title: Relational Operators for Intervals
 Version: 0.1-2
-Date: 2018-03-06
+Date: 2020-07-07
 Author: Peter Solymos
 Maintainer: Peter Solymos <solymos@ualberta.ca>
 Description: Evaluating if values
