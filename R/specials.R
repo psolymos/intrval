@@ -49,6 +49,10 @@
 ## notin/nin/ni - opposite of %in%
 "%ni%" <- function(x, table)
     !(match(x, table, nomatch = 0) > 0)
+"%notin%" <- function(x, table)
+    !(match(x, table, nomatch = 0) > 0)
+"%nin%" <- function(x, table)
+    !(match(x, table, nomatch = 0) > 0)
 
 ## 2 closed intervals
 "%[o]%" <- function(interval1, interval2)
@@ -121,3 +125,13 @@
 ## this is 10x faster
 "%()o()%" <- function(interval1, interval2)
     interval1 %(o)% interval2
+
+## cut number line into 3 intervals: -Inf, a, b, +Inf
+"%[c]%" <- function(x, interval)
+    .c3(x, interval, "[]")
+"%[c)%" <- function(x, interval)
+    .c3(x, interval, "[)")
+"%(c]%" <- function(x, interval)
+    .c3(x, interval, "(]")
+"%(c)%" <- function(x, interval)
+    .c3(x, interval, "()")

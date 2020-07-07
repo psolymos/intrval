@@ -9,7 +9,8 @@ export(
     "%[)o[]%", "%[)o[)%", "%[)o(]%", "%[)o()%",
     "%(]o[]%", "%(]o[)%", "%(]o(]%", "%(]o()%",
     "%()o[]%", "%()o[)%", "%()o(]%", "%()o()%",
-    "%ni%",
+    "%ni%", "%nin%", "%notin%",
+    "%[c]%",  "%[c)%",  "%(c]%",   "%(c)%",
     "intrval_types")
 
 importFrom("graphics", "lines", "par", "plot", "points", "text")

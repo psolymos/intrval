@@ -20,11 +20,9 @@ function(interval)
     list(a=a, b=b)
 }
 
-.intrval <-
+.intrval0 <-
 function(x, interval, type)
 {
-    type <- match.arg(type,
-        c("[]", "[)", "(]", "()", "][", "](", ")[", ")("))
     type_a <- substr(type, 1L, 1L)
     type_b <- substr(type, 2L, 2L)
     ab <- .get_intrval(interval)
@@ -38,7 +36,16 @@ function(x, interval, type)
         "]" = x <= ab$b,
         "(" = x > ab$b,
         ")" = x < ab$b)
-    A & B
+    list(A=A, B=B)
+}
+
+.intrval <-
+function(x, interval, type)
+{
+    type <- match.arg(type,
+        c("[]", "[)", "(]", "()", "][", "](", ")[", ")("))
+    i <- .intrval0(x, interval, type)
+    i$A & i$B
 }
 
 .lssthan <-
@@ -106,3 +113,14 @@ function(interval1, interval2, type1, type2)
         b1 > a2)
 }
 
+## cut the number line into 3 intervals: -Inf, a, b, +Inf
+.c3 <-
+function(x, interval, type)
+{
+    type <- match.arg(type, c("[]", "[)", "(]", "()"))
+    i <- .intrval0(x, interval, type)
+    out <- integer(length(x))
+    out[!i$A & i$B] <- -1L
+    out[i$A & !i$B] <- +1L
+    out
+}

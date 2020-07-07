@@ -77,7 +77,6 @@ least on ordinal scale (e.g. dates), see Examples.
 Note: interval endpoints are sorted internally thus ensuring the condition
 a <= b is not necessary.
 
-Values of \code{x} are compared to \code{interval} endpoints.
 The \code{type} argument or the specification of the special function
 determines the open (\code{(} and \code{)}) or
 closed (\code{[} and \code{]}) endpoints and relations.
