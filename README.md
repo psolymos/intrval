@@ -85,11 +85,18 @@ The functions `%[c]%`, `%[c)%`, `%(c]%`, and `%(c)%`
 return an integer vector taking values
 (the `c` within the brackets refer to 'cut'):
 
-* `-1L` when the value is less than or equal to `a`,
+* `-1L` when the value is less than or equal to `a` (`a <= b`),
   depending on the interval type,
 * `0L` when the value is inside the interval, or
-* `1L` when the value is greater than or equal to `b`,
+* `1L` when the value is greater than or equal to `b` (`a <= b`),
   depending on the interval type.
+
+ Expression        | Evaluates to -1 | Evaluates to 0    | Evaluates to 1
+-------------------|-----------------|-------------------|------------------
+ `x %[c]% c(a, b)` | `x < a`         | `x >= a & x <= b` | `x > b`
+ `x %[c)% c(a, b)` | `x < a`         | `x >= a & x < b`  | `x >= b`
+ `x %(c]% c(a, b)` | `x <= a`        | `x > a & x <= b`  | `x > b`
+ `x %(c)% c(a, b)` | `x <= a`        | `x > a & x < b`   | `x >= b`
 
 ## Interval-to-interval relations
 
@@ -152,6 +159,8 @@ negation and directional counterparts.
 The previous operators will return `NA` for unordered factors.
 Set overlap can be evaluated by the **base** `%in%` operator and 
 its negation `%ni%` (as in *n*ot *i*n, the opposite of in).
+`%nin%` and `%notin%` are aliases for
+better code readability (`%in%` can look very much like `%ni%`).
 
 ## Examples
 
