@@ -4,11 +4,13 @@
 \alias{\%(c]\%}
 \alias{\%(c)\%}
 \title{
-Divides Values Into 3 Intervals
+Dividing a Range Into 3 Intervals
 }
 \description{
 Functions for evaluating if values of vectors are within intervals,
 or less than or higher than interval endpoints.
+The \code{c} within the brackets refer to \code{\link{cut}},
+a similar function.
 }
 \usage{
 x \%[c]\% interval

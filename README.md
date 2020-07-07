@@ -79,6 +79,18 @@ Equal    | Not equal | Less than | Greater than
  `%(]%`  | `%](%`    | `%(<]%`   | `%(>]%`
  `%()%`  | `%][%`    | `%(<)%`   | `%(>)%`
 
+### Dividing a range into 3 intervals
+
+The functions `%[c]%`, `%[c)%`, `%(c]%`, and `%(c)%`
+return an integer vector taking values
+(the `c` within the brackets refer to 'cut'):
+
+* `-1L` when the value is less than or equal to `a`,
+  depending on the interval type,
+* `0L` when the value is inside the interval, or
+* `1L` when the value is greater than or equal to `b`,
+  depending on the interval type.
+
 ## Interval-to-interval relations
 
 The operators define the open/closed nature of the lower/upper
