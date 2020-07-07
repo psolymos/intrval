@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Negated Value Matching — %ni% • intrval</title>
+<title>Dividing a Range Into 3 Intervals — %[c]% • intrval</title>
 
 
 <!-- jquery -->
@@ -35,11 +35,11 @@
 
 
 
-<meta property="og:title" content="Negated Value Matching — %ni%" />
-<meta property="og:description" content="%ni% is the negation of %in%,
-which returns a logical vector indicating if there is a non-match or not
-for its left operand. %nin% and %notin% are aliases for
-better code readability (%in% can look very much like %ni%)." />
+<meta property="og:title" content="Dividing a Range Into 3 Intervals — %[c]%" />
+<meta property="og:description" content="Functions for evaluating if values of vectors are within intervals,
+or less than or higher than interval endpoints.
+The c within the brackets refer to cut,
+a similar function." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -121,49 +121,56 @@ better code readability (%in% can look very much like %ni%)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Negated Value Matching</h1>
+    <h1>Dividing a Range Into 3 Intervals</h1>
     
-    <div class="hidden name"><code>ni.Rd</code></div>
+    <div class="hidden name"><code>cut.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>%ni%</code> is the negation of <code><a href='https://rdrr.io/r/base/match.html'>%in%</a></code>,
-which returns a logical vector indicating if there is a non-match or not
-for its left operand. <code>%nin%</code> and <code>%notin%</code> are aliases for
-better code readability (<code>%in%</code> can look very much like <code>%ni%</code>).</p>
+    <p>Functions for evaluating if values of vectors are within intervals,
+or less than or higher than interval endpoints.
+The <code>c</code> within the brackets refer to <code><a href='https://rdrr.io/r/base/cut.html'>cut</a></code>,
+a similar function.</p>
     </div>
 
-    <pre class="usage"><span class='no'>x</span> <span class='kw'>%ni%</span> <span class='no'>table</span>
-<span class='no'>x</span> <span class='kw'>%nin%</span> <span class='no'>table</span>
-<span class='no'>x</span> <span class='kw'>%notin%</span> <span class='no'>table</span></pre>
+    <pre class="usage"><span class='no'>x</span> <span class='kw'>%[c]%</span> <span class='no'>interval</span>
+<span class='no'>x</span> <span class='kw'>%[c)%</span> <span class='no'>interval</span>
+<span class='no'>x</span> <span class='kw'>%(c]%</span> <span class='no'>interval</span>
+<span class='no'>x</span> <span class='kw'>%(c)%</span> <span class='no'>interval</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>vector or <code>NULL</code>: the values to be matched.</p></td>
+      <td><p>vector or <code>NULL</code>: the values to be compared to interval endpoints.</p></td>
     </tr>
     <tr>
-      <th>table</th>
-      <td><p>vector or <code>NULL</code>: the values to be matched against.</p></td>
+      <th>interval</th>
+      <td><p>vector, 2-column matrix, list, or <code>NULL</code>: the interval end points.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A logical vector, indicating if a non-match was located for each element of
-<code>x</code>: thus the values are <code>TRUE</code> or <code>FALSE</code> and never <code>NA</code>.</p>
+    <p>Values of <code>x</code> are compared to <code>interval</code> endpoints
+a and b (a &lt;= b) (see <code><a href='intrval.html'>%[]%</a></code> for details).
+The functions return an integer vector taking values
+<code>-1L</code> (value of <code>x</code> is less than or equal to a,
+depending on the interval type),
+<code>0L</code> (value of <code>x</code> is inside the interval), or
+<code>1L</code> (value of <code>x</code> is greater than or equal to b,
+depending on the interval type).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>All the opposite of what is written for <code><a href='https://rdrr.io/r/base/match.html'>%in%</a></code>.</p>
+    <div class='dont-index'><p>Similar functions (but not quite): <code><a href='https://rdrr.io/r/base/sign.html'>sign</a></code>,
+<code><a href='https://rdrr.io/r/base/cut.html'>cut</a></code>, <code><a href='https://rdrr.io/r/base/bincode.html'>.bincode</a></code>, <code><a href='https://rdrr.io/r/base/findInterval.html'>findInterval</a></code>.</p>
 <p>See relational operators for intervals: <code><a href='intrval.html'>%[]%</a></code>.</p>
 <p>See <code><a href='https://rdrr.io/r/base/Syntax.html'>Syntax</a></code> for operator precedence.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fl'>1</span>:<span class='fl'>10</span> <span class='kw'>%ni%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>5</span>,<span class='fl'>9</span>)</div><div class='output co'>#&gt;  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE</div><div class='input'><span class='fl'>1</span>:<span class='fl'>10</span> <span class='kw'>%nin%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>5</span>,<span class='fl'>9</span>)</div><div class='output co'>#&gt;  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE</div><div class='input'><span class='fl'>1</span>:<span class='fl'>10</span> <span class='kw'>%notin%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>5</span>,<span class='fl'>9</span>)</div><div class='output co'>#&gt;  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE</div><div class='input'>
-<span class='no'>sstr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"c"</span>,<span class='st'>"ab"</span>,<span class='st'>"B"</span>,<span class='st'>"bba"</span>,<span class='st'>"c"</span>,<span class='fl'>NA</span>,<span class='st'>"@"</span>,<span class='st'>"bla"</span>,<span class='st'>"a"</span>,<span class='st'>"Ba"</span>,<span class='st'>"%"</span>)
-<span class='no'>sstr</span>[<span class='no'>sstr</span> <span class='kw'>%ni%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>letters</span>, <span class='no'>LETTERS</span>)]</div><div class='output co'>#&gt; [1] "ab"  "bba" NA    "@"   "bla" "Ba"  "%"  </div></pre>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>:<span class='fl'>5</span>
+<span class='no'>x</span> <span class='kw'>%[c]%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>4</span>)</div><div class='output co'>#&gt; [1] -1  0  0  0  1</div><div class='input'><span class='no'>x</span> <span class='kw'>%[c)%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>4</span>)</div><div class='output co'>#&gt; [1] -1  0  0  1  1</div><div class='input'><span class='no'>x</span> <span class='kw'>%(c]%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>4</span>)</div><div class='output co'>#&gt; [1] -1 -1  0  0  1</div><div class='input'><span class='no'>x</span> <span class='kw'>%(c)%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>4</span>)</div><div class='output co'>#&gt; [1] -1 -1  0  1  1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -181,6 +181,53 @@
 </tbody>
 </table>
 </div>
+<div id="dividing-a-range-into-3-intervals" class="section level3">
+<h3 class="hasAnchor">
+<a href="#dividing-a-range-into-3-intervals" class="anchor"></a>Dividing a range into 3 intervals</h3>
+<p>The functions <code><a href="reference/cut.html">%[c]%</a></code>, <code><a href="reference/cut.html">%[c)%</a></code>, <code><a href="reference/cut.html">%(c]%</a></code>, and <code><a href="reference/cut.html">%(c)%</a></code> return an integer vector taking values (the <code>c</code> within the brackets refer to ‘cut’):</p>
+<ul>
+<li>
+<code>-1L</code> when the value is less than or equal to <code>a</code> (<code>a &lt;= b</code>), depending on the interval type,</li>
+<li>
+<code>0L</code> when the value is inside the interval, or</li>
+<li>
+<code>1L</code> when the value is greater than or equal to <code>b</code> (<code>a &lt;= b</code>), depending on the interval type.</li>
+</ul>
+<table class="table">
+<thead><tr class="header">
+<th>Expression</th>
+<th>Evaluates to -1</th>
+<th>Evaluates to 0</th>
+<th>Evaluates to 1</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>x %[c]% c(a, b)</code></td>
+<td><code>x &lt; a</code></td>
+<td><code>x &gt;= a &amp; x &lt;= b</code></td>
+<td><code>x &gt; b</code></td>
+</tr>
+<tr class="even">
+<td><code>x %[c)% c(a, b)</code></td>
+<td><code>x &lt; a</code></td>
+<td><code>x &gt;= a &amp; x &lt; b</code></td>
+<td><code>x &gt;= b</code></td>
+</tr>
+<tr class="odd">
+<td><code>x %(c]% c(a, b)</code></td>
+<td><code>x &lt;= a</code></td>
+<td><code>x &gt; a &amp; x &lt;= b</code></td>
+<td><code>x &gt; b</code></td>
+</tr>
+<tr class="even">
+<td><code>x %(c)% c(a, b)</code></td>
+<td><code>x &lt;= a</code></td>
+<td><code>x &gt; a &amp; x &lt; b</code></td>
+<td><code>x &gt;= b</code></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="interval-to-interval-relations" class="section level2">
 <h2 class="hasAnchor">
@@ -263,7 +310,7 @@
 <div id="operators-for-discrete-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#operators-for-discrete-variables" class="anchor"></a>Operators for discrete variables</h2>
-<p>The previous operators will return <code>NA</code> for unordered factors. Set overlap can be evaluated by the <strong>base</strong> <code><a href="https://rdrr.io/r/base/match.html">%in%</a></code> operator and its negation <code><a href="reference/ni.html">%ni%</a></code> (as in <em>n</em>ot <em>i</em>n, the opposite of in).</p>
+<p>The previous operators will return <code>NA</code> for unordered factors. Set overlap can be evaluated by the <strong>base</strong> <code><a href="https://rdrr.io/r/base/match.html">%in%</a></code> operator and its negation <code><a href="reference/ni.html">%ni%</a></code> (as in <em>n</em>ot <em>i</em>n, the opposite of in). <code><a href="reference/ni.html">%nin%</a></code> and <code><a href="reference/ni.html">%notin%</a></code> are aliases for better code readability (<code><a href="https://rdrr.io/r/base/match.html">%in%</a></code> can look very much like <code><a href="reference/ni.html">%ni%</a></code>).</p>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
