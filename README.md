@@ -27,8 +27,8 @@ install.packages("intrval")
 Install development version from GitHub:
 
 ```R
-if (!requireNamespace("devtools")) install.packages("devtools")
-devtools::install_github("psolymos/intrval")
+if (!requireNamespace("remotes")) install.packages("remotes")
+remotes::install_github("psolymos/intrval")
 ```
 
 User visible changes are listed in the [NEWS](https://github.com/psolymos/intrval/blob/master/NEWS.md) file.
