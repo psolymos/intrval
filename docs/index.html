@@ -91,8 +91,8 @@
 <p>Install from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"intrval"</span>)</a></code></pre></div>
 <p>Install development version from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"devtools"</span>)) <span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"psolymos/intrval"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"remotes"</span>)) <span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"psolymos/intrval"</span>)</a></code></pre></div>
 <p>User visible changes are listed in the <a href="https://github.com/psolymos/intrval/blob/master/NEWS.md">NEWS</a> file.</p>
 <p>Use the <a href="https://github.com/psolymos/intrval/issues">issue tracker</a> to report a problem.</p>
 </div>
@@ -453,17 +453,17 @@
 <a class="sourceLine" id="cb12-8" data-line-number="8">x &lt;-<span class="st"> </span>pistonrings<span class="op">$</span>diameter[<span class="op">!</span>pistonrings<span class="op">$</span>trial]</a>
 <a class="sourceLine" id="cb12-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">## UI function</span></a>
-<a class="sourceLine" id="cb12-11" data-line-number="11">ui &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span>(</a>
-<a class="sourceLine" id="cb12-12" data-line-number="12">  <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span>(<span class="st">"plot"</span>),</a>
-<a class="sourceLine" id="cb12-13" data-line-number="13">  <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span>(<span class="st">"x"</span>, <span class="st">"x SD:"</span>,</a>
+<a class="sourceLine" id="cb12-11" data-line-number="11">ui &lt;-<span class="st"> </span><span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidPage</a></span>(</a>
+<a class="sourceLine" id="cb12-12" data-line-number="12">  <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html">plotOutput</a></span>(<span class="st">"plot"</span>),</a>
+<a class="sourceLine" id="cb12-13" data-line-number="13">  <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></span>(<span class="st">"x"</span>, <span class="st">"x SD:"</span>,</a>
 <a class="sourceLine" id="cb12-14" data-line-number="14">    <span class="dt">min=</span><span class="dv">0</span>, <span class="dt">max=</span><span class="dv">5</span>, <span class="dt">value=</span><span class="dv">0</span>, <span class="dt">step=</span><span class="fl">0.1</span>,</a>
-<a class="sourceLine" id="cb12-15" data-line-number="15">    <span class="dt">animate=</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">animationOptions</a></span>(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb12-15" data-line-number="15">    <span class="dt">animate=</span><span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">animationOptions</a></span>(<span class="dv">100</span>)</a>
 <a class="sourceLine" id="cb12-16" data-line-number="16">  )</a>
 <a class="sourceLine" id="cb12-17" data-line-number="17">)</a>
 <a class="sourceLine" id="cb12-18" data-line-number="18"></a>
 <a class="sourceLine" id="cb12-19" data-line-number="19"><span class="co"># Server logic</span></a>
 <a class="sourceLine" id="cb12-20" data-line-number="20">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</a>
-<a class="sourceLine" id="cb12-21" data-line-number="21">  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span>({</a>
+<a class="sourceLine" id="cb12-21" data-line-number="21">  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a></span>({</a>
 <a class="sourceLine" id="cb12-22" data-line-number="22">    Main &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Shewhart quality control chart"</span>, </a>
 <a class="sourceLine" id="cb12-23" data-line-number="23">        <span class="st">"diameter of piston rings"</span>, <span class="kw"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span>(<span class="st">"+/- %.1f SD"</span>, input<span class="op">$</span>x),</a>
 <a class="sourceLine" id="cb12-24" data-line-number="24">        <span class="dt">sep=</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</a>
@@ -476,7 +476,7 @@
 <a class="sourceLine" id="cb12-31" data-line-number="31">}</a>
 <a class="sourceLine" id="cb12-32" data-line-number="32"></a>
 <a class="sourceLine" id="cb12-33" data-line-number="33"><span class="co">## Run shiny app</span></a>
-<a class="sourceLine" id="cb12-34" data-line-number="34"><span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span>()) <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(ui, server)</a></code></pre></div>
+<a class="sourceLine" id="cb12-34" data-line-number="34"><span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span>()) <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(ui, server)</a></code></pre></div>
 </div>
 <div id="shiny-example-2-range-slider" class="section level3">
 <h3 class="hasAnchor">
@@ -492,32 +492,32 @@
 <a class="sourceLine" id="cb13-8" data-line-number="8">d &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span>(x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span>), <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb13-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb13-10" data-line-number="10"><span class="co">## UI function</span></a>
-<a class="sourceLine" id="cb13-11" data-line-number="11">ui &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span>(</a>
-<a class="sourceLine" id="cb13-12" data-line-number="12">  <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html">titlePanel</a></span>(<span class="st">"intrval example with shiny"</span>),</a>
-<a class="sourceLine" id="cb13-13" data-line-number="13">  <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarLayout</a></span>(</a>
-<a class="sourceLine" id="cb13-14" data-line-number="14">    <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarPanel</a></span>(</a>
-<a class="sourceLine" id="cb13-15" data-line-number="15">      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span>(<span class="st">"bb_x"</span>, <span class="st">"x value:"</span>,</a>
+<a class="sourceLine" id="cb13-11" data-line-number="11">ui &lt;-<span class="st"> </span><span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidPage</a></span>(</a>
+<a class="sourceLine" id="cb13-12" data-line-number="12">  <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/titlePanel.html">titlePanel</a></span>(<span class="st">"intrval example with shiny"</span>),</a>
+<a class="sourceLine" id="cb13-13" data-line-number="13">  <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/sidebarLayout.html">sidebarLayout</a></span>(</a>
+<a class="sourceLine" id="cb13-14" data-line-number="14">    <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/sidebarLayout.html">sidebarPanel</a></span>(</a>
+<a class="sourceLine" id="cb13-15" data-line-number="15">      <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></span>(<span class="st">"bb_x"</span>, <span class="st">"x value:"</span>,</a>
 <a class="sourceLine" id="cb13-16" data-line-number="16">        <span class="dt">min=</span><span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(x), <span class="dt">max=</span><span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(x), <span class="dt">value=</span><span class="kw"><a href="https://rdrr.io/r/base/range.html">range</a></span>(x), </a>
 <a class="sourceLine" id="cb13-17" data-line-number="17">        <span class="dt">step=</span><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/diff.html">diff</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/range.html">range</a></span>(x))<span class="op">/</span><span class="dv">20</span>, <span class="dv">1</span>), <span class="dt">animate=</span><span class="ot">TRUE</span></a>
 <a class="sourceLine" id="cb13-18" data-line-number="18">      ),</a>
-<a class="sourceLine" id="cb13-19" data-line-number="19">      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span>(<span class="st">"bb_y"</span>, <span class="st">"y value:"</span>,</a>
+<a class="sourceLine" id="cb13-19" data-line-number="19">      <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></span>(<span class="st">"bb_y"</span>, <span class="st">"y value:"</span>,</a>
 <a class="sourceLine" id="cb13-20" data-line-number="20">        <span class="dt">min =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(y), <span class="dt">max =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(y), <span class="dt">value =</span> <span class="kw"><a href="https://rdrr.io/r/base/range.html">range</a></span>(y),</a>
 <a class="sourceLine" id="cb13-21" data-line-number="21">        <span class="dt">step=</span><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/diff.html">diff</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/range.html">range</a></span>(y))<span class="op">/</span><span class="dv">20</span>, <span class="dv">1</span>), <span class="dt">animate=</span><span class="ot">TRUE</span></a>
 <a class="sourceLine" id="cb13-22" data-line-number="22">      ),</a>
-<a class="sourceLine" id="cb13-23" data-line-number="23">      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span>(<span class="st">"bb_d"</span>, <span class="st">"radial distance:"</span>,</a>
+<a class="sourceLine" id="cb13-23" data-line-number="23">      <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></span>(<span class="st">"bb_d"</span>, <span class="st">"radial distance:"</span>,</a>
 <a class="sourceLine" id="cb13-24" data-line-number="24">        <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(d), <span class="dt">value =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(d)<span class="op">/</span><span class="dv">2</span>),</a>
 <a class="sourceLine" id="cb13-25" data-line-number="25">        <span class="dt">step=</span><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(d)<span class="op">/</span><span class="dv">20</span>, <span class="dv">1</span>), <span class="dt">animate=</span><span class="ot">TRUE</span></a>
 <a class="sourceLine" id="cb13-26" data-line-number="26">      )</a>
 <a class="sourceLine" id="cb13-27" data-line-number="27">    ),</a>
-<a class="sourceLine" id="cb13-28" data-line-number="28">    <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">mainPanel</a></span>(</a>
-<a class="sourceLine" id="cb13-29" data-line-number="29">      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span>(<span class="st">"plot"</span>)</a>
+<a class="sourceLine" id="cb13-28" data-line-number="28">    <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/sidebarLayout.html">mainPanel</a></span>(</a>
+<a class="sourceLine" id="cb13-29" data-line-number="29">      <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html">plotOutput</a></span>(<span class="st">"plot"</span>)</a>
 <a class="sourceLine" id="cb13-30" data-line-number="30">    )</a>
 <a class="sourceLine" id="cb13-31" data-line-number="31">  )</a>
 <a class="sourceLine" id="cb13-32" data-line-number="32">)</a>
 <a class="sourceLine" id="cb13-33" data-line-number="33"></a>
 <a class="sourceLine" id="cb13-34" data-line-number="34"><span class="co"># Server logic</span></a>
 <a class="sourceLine" id="cb13-35" data-line-number="35">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</a>
-<a class="sourceLine" id="cb13-36" data-line-number="36">  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span>({</a>
+<a class="sourceLine" id="cb13-36" data-line-number="36">  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a></span>({</a>
 <a class="sourceLine" id="cb13-37" data-line-number="37">    iv1 &lt;-<span class="st"> </span>x <span class="op">%[]%</span><span class="st"> </span>input<span class="op">$</span>bb_x <span class="op">&amp;</span><span class="st"> </span>y <span class="op">%[]%</span><span class="st"> </span>input<span class="op">$</span>bb_y</a>
 <a class="sourceLine" id="cb13-38" data-line-number="38">    iv2 &lt;-<span class="st"> </span>x <span class="op">%[]%</span><span class="st"> </span>input<span class="op">$</span>bb_y <span class="op">&amp;</span><span class="st"> </span>y <span class="op">%[]%</span><span class="st"> </span>input<span class="op">$</span>bb_x</a>
 <a class="sourceLine" id="cb13-39" data-line-number="39">    iv3 &lt;-<span class="st"> </span>d <span class="op">%()%</span><span class="st"> </span>input<span class="op">$</span>bb_d</a>
@@ -531,7 +531,7 @@
 <a class="sourceLine" id="cb13-47" data-line-number="47">}</a>
 <a class="sourceLine" id="cb13-48" data-line-number="48"></a>
 <a class="sourceLine" id="cb13-49" data-line-number="49"><span class="co">## Run shiny app</span></a>
-<a class="sourceLine" id="cb13-50" data-line-number="50"><span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span>()) <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(ui, server)</a></code></pre></div>
+<a class="sourceLine" id="cb13-50" data-line-number="50"><span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span>()) <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(ui, server)</a></code></pre></div>
 </div>
 </div>
 </div>
