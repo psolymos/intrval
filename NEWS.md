@@ -2,7 +2,7 @@
 
 * Added functions `%[c]%`, `%[c)%`, `%(c]%`, and `%(c)%`
   to divide a range into 3 intervals.
-* Added aliases `%nin%` and `%notin%` to `%ni%` for better code readibility.
+* Added aliases `%nin%` and `%notin%` to `%ni%` for better code readability.
 
 # Version 0.1-1 -- January 21, 2017
 
