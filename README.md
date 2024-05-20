@@ -2,11 +2,7 @@
 
 [![CRAN version](http://www.r-pkg.org/badges/version/intrval)](http://cran.rstudio.com/web/packages/intrval/index.html)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/intrval)](https://www.rdocumentation.org/packages/intrval/)
-[![Linux build Status](https://travis-ci.org/psolymos/intrval.svg?branch=master)](https://travis-ci.org/psolymos/intrval)
-[![Windows build status](https://ci.appveyor.com/api/projects/status/a34rcucks4jn7niq?svg=true)](https://ci.appveyor.com/project/psolymos/intrval)
-[![Code coverage status](https://codecov.io/gh/psolymos/intrval/branch/master/graph/badge.svg)](https://codecov.io/gh/psolymos/intrval)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
-[![Research software impact](http://depsy.org/api/package/cran/intrval/badge.svg)](http://depsy.org/package/r/intrval)
 [![Github Stars](https://img.shields.io/github/stars/psolymos/intrval.svg?style=social&label=GitHub)](https://github.com/psolymos/intrval)
 
 Evaluating if values of vectors are within different open/closed intervals
