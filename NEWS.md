@@ -1,3 +1,7 @@
+# Version 0.1-3 -- May 19, 2024
+
+* Maintainer email changed to personal.
+
 # Version 0.1-2 -- August 11, 2020
 
 * Added functions `%[c]%`, `%[c)%`, `%(c]%`, and `%(c)%`

@@ -1,10 +1,10 @@
 Package: intrval
 Type: Package
 Title: Relational Operators for Intervals
-Version: 0.1-2
-Date: 2020-08-11
+Version: 0.1-3
+Date: 2024-05-19
 Author: Peter Solymos
-Maintainer: Peter Solymos <solymos@ualberta.ca>
+Maintainer: Peter Solymos <psolymos@gmail.com>
 Description: Evaluating if values
   of vectors are within different open/closed intervals
   (`x %[]% c(a, b)`), or if two closed
