@@ -1,0 +1,31 @@
+on:
+    push:
+      branches:
+        - master
+
+name: check
+
+jobs:
+  deploy:
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: R setup
+        uses: r-lib/actions/setup-r@v2
+      - name: Install pandoc
+        run: |
+          brew install pandoc
+          brew install --cask xquartz
+      - name: Install dependencies
+        run: Rscript -e 'install.packages(c("rmarkdown", "knitr", "pkgdown", "devtools"))'
+      - name: Check package
+        run: Rscript -e 'devtools::check()'
+      - name: Build site
+        run: Rscript -e 'pkgdown::build_site_github_pages(install=TRUE)'
+      - name: Deploy site
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: docs
+          clean: true
