@@ -1,3 +1,7 @@
+# Version 1.0-0 -- Sep 21, 2024
+
+* Fixing floating point number comparisons (#17).
+
 # Version 0.1-3 -- May 19, 2024
 
 * Maintainer email changed to personal.

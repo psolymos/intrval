@@ -14,3 +14,5 @@ export(
     "intrval_types")
 
 importFrom("graphics", "lines", "par", "plot", "points", "text")
+# importFrom("fpCompare", "%>=%", "%>>%", "%<=%", "%<<%", "%==%", "%!=%")
+
