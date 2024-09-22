@@ -326,7 +326,6 @@ curve(dtrunc(x, distr="norm", lwr=-1, upr=1), add=TRUE, col=2, n=n)
 
 ### Shiny example 1: regular slider
 
-
 ![](https://github.com/psolymos/intrval/raw/master/extras/regular_slider.gif)
 
 ```R
