@@ -140,27 +140,31 @@ function(x, interval, type)
 # "%==%" <- base::`==`
 # "%!=%" <- base::`!=`
 
+.use_fpc <- function() {
+    isTRUE(getOption("intrval_options")$use_fpCompare[[1L]])
+}
+
 "%>=%" <- function(e1, e2) {
-    if (is.numeric(e1) && is.numeric(e2))
+    if (.use_fpc() && is.numeric(e1) && is.numeric(e2))
         fpCompare::`%>=%`(e1, e2) else base::`>=`(e1, e2)
 }
 "%>>%" <- function(e1, e2) {
-    if (is.numeric(e1) && is.numeric(e2))
+    if (.use_fpc() && is.numeric(e1) && is.numeric(e2))
         fpCompare::`%>>%`(e1, e2) else base::`>`(e1, e2)
 }
 "%<=%" <- function(e1, e2) {
-    if (is.numeric(e1) && is.numeric(e2))
+    if (.use_fpc() && is.numeric(e1) && is.numeric(e2))
         fpCompare::`%<=%`(e1, e2) else base::`<=`(e1, e2)
 }
 "%<<%" <- function(e1, e2) {
-    if (is.numeric(e1) && is.numeric(e2))
+    if (.use_fpc() && is.numeric(e1) && is.numeric(e2))
         fpCompare::`%<<%`(e1, e2) else base::`<`(e1, e2)
 }
 "%==%" <- function(e1, e2) {
-    if (is.numeric(e1) && is.numeric(e2))
+    if (.use_fpc() && is.numeric(e1) && is.numeric(e2))
         fpCompare::`%==%`(e1, e2) else base::`==`(e1, e2)
 }
 "%!=%" <- function(e1, e2) {
-    if (is.numeric(e1) && is.numeric(e2))
+    if (.use_fpc() && is.numeric(e1) && is.numeric(e2))
         fpCompare::`%!=%`(e1, e2) else base::`!=`(e1, e2)
 }
