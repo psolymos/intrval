@@ -21,7 +21,7 @@ jobs:
           brew install pandoc
           brew install --cask xquartz
       - name: Install dependencies
-        run: Rscript -e 'install.packages(c("rmarkdown", "knitr", "pkgdown", "devtools"))'
+        run: Rscript -e 'install.packages(c("fpCompare", "rmarkdown", "knitr", "pkgdown", "devtools"))'
       - name: Check package
         run: Rscript -e 'devtools::check()'
       - name: Build site
