@@ -1,7 +1,7 @@
 Package: intrval
 Type: Package
 Title: Relational Operators for Intervals
-Version: 0.1-3
+Version: 1.0-0
 Date: 2024-05-19
 Author: Peter Solymos [cre, aut] (<https://orcid.org/0000-0001-7337-1740>)
 Maintainer: Peter Solymos <psolymos@gmail.com>
@@ -11,6 +11,7 @@ Description: Evaluating if values
   intervals overlap (`c(a1, b1) %[]o[]% c(a2, b2)`).
   Operators for negation and directional relations also implemented.
 License: GPL-2
+Imports: fpCompare
 URL: https://github.com/psolymos/intrval
 BugReports: https://github.com/psolymos/intrval/issues
 LazyLoad: yes

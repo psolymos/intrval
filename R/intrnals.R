@@ -27,15 +27,15 @@ function(x, interval, type)
     type_b <- substr(type, 2L, 2L)
     ab <- .get_intrval(interval)
     A <- switch(type_a,
-        "[" = x >= ab$a,
-        "]" = x <= ab$a,
-        "(" = x > ab$a,
-        ")" = x < ab$a)
+        "[" = x %>=% ab$a,
+        "]" = x %<=% ab$a,
+        "(" = x %>>% ab$a,
+        ")" = x %<<% ab$a)
     B <- switch(type_b,
-        "[" = x >= ab$b,
-        "]" = x <= ab$b,
-        "(" = x > ab$b,
-        ")" = x < ab$b)
+        "[" = x %>=% ab$b,
+        "]" = x %<=% ab$b,
+        "(" = x %>>% ab$b,
+        ")" = x %<<% ab$b)
     list(A=A, B=B)
 }
 
@@ -53,8 +53,8 @@ function(x, interval, type)
 {
     ab <- .get_intrval(interval)
     switch(match.arg(type, c("[", "(")),
-        "[" = x < ab$a,
-        "(" = x <= ab$a)
+        "[" = x %<<% ab$a,
+        "(" = x %<=% ab$a)
 }
 
 .greatrthan <-
@@ -62,8 +62,8 @@ function(x, interval, type)
 {
     ab <- .get_intrval(interval)
     switch(match.arg(type, c("]", ")")),
-        "]" = x > ab$b,
-        ")" = x >= ab$b)
+        "]" = x %>>% ab$b,
+        ")" = x %>=% ab$b)
 }
 
 ## a1 %[]% c(a2, b2) | b1 %[]% c(a2, b2)
@@ -103,14 +103,14 @@ function(interval1, interval2, type1, type2)
     type1 <- match.arg(type1, c("[]", "[)", "(]", "()"))
     type2 <- match.arg(type2, c("[]", "[)", "(]", "()"))
 
-    b1 <- ifelse(iv1$a < iv2$a, iv1$b, iv2$b)
-    a2 <- ifelse(iv1$a < iv2$a, iv2$a, iv1$a)
-    type1v <- ifelse(iv1$a < iv2$a, substr(type1, 2L, 2L), substr(type2, 2L, 2L))
-    type2v <- ifelse(iv1$a < iv2$a, substr(type2, 1L, 1L), substr(type1, 1L, 1L))
+    b1 <- ifelse(iv1$a %<<% iv2$a, iv1$b, iv2$b)
+    a2 <- ifelse(iv1$a %<<% iv2$a, iv2$a, iv1$a)
+    type1v <- ifelse(iv1$a %<<% iv2$a, substr(type1, 2L, 2L), substr(type2, 2L, 2L))
+    type2v <- ifelse(iv1$a %<<% iv2$a, substr(type2, 1L, 1L), substr(type1, 1L, 1L))
 
     ifelse(type1v == "]" & type2v == "[",
-        b1 >= a2,
-        b1 > a2)
+        b1 %>=% a2,
+        b1 %>>% a2)
 }
 
 ## cut the number line into 3 intervals: -Inf, a, b, +Inf
@@ -123,4 +123,48 @@ function(x, interval, type)
     out[!i$A & i$B] <- -1L
     out[i$A & !i$B] <- +1L
     out
+}
+
+## fpCompare functions
+# "%>=%" <- fpCompare::`%>=%`
+# "%>>%" <- fpCompare::`%>>%`
+# "%<=%" <- fpCompare::`%<=%`
+# "%<<%" <- fpCompare::`%<<%`
+# "%==%" <- fpCompare::`%==%`
+# "%!=%" <- fpCompare::`%!=%`
+
+# "%>=%" <- base::`>=`
+# "%>>%" <- base::`>`
+# "%<=%" <- base::`<=`
+# "%<<%" <- base::`<`
+# "%==%" <- base::`==`
+# "%!=%" <- base::`!=`
+
+.use_fpc <- function() {
+    isTRUE(getOption("intrval_options")$use_fpCompare[[1L]])
+}
+
+"%>=%" <- function(e1, e2) {
+    if (.use_fpc() && is.numeric(e1) && is.numeric(e2))
+        fpCompare::`%>=%`(e1, e2) else base::`>=`(e1, e2)
+}
+"%>>%" <- function(e1, e2) {
+    if (.use_fpc() && is.numeric(e1) && is.numeric(e2))
+        fpCompare::`%>>%`(e1, e2) else base::`>`(e1, e2)
+}
+"%<=%" <- function(e1, e2) {
+    if (.use_fpc() && is.numeric(e1) && is.numeric(e2))
+        fpCompare::`%<=%`(e1, e2) else base::`<=`(e1, e2)
+}
+"%<<%" <- function(e1, e2) {
+    if (.use_fpc() && is.numeric(e1) && is.numeric(e2))
+        fpCompare::`%<<%`(e1, e2) else base::`<`(e1, e2)
+}
+"%==%" <- function(e1, e2) {
+    if (.use_fpc() && is.numeric(e1) && is.numeric(e2))
+        fpCompare::`%==%`(e1, e2) else base::`==`(e1, e2)
+}
+"%!=%" <- function(e1, e2) {
+    if (.use_fpc() && is.numeric(e1) && is.numeric(e2))
+        fpCompare::`%!=%`(e1, e2) else base::`!=`(e1, e2)
 }

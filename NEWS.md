@@ -1,3 +1,13 @@
+# Version 1.0-0 -- Sep 21, 2024
+
+* Fixing floating point number comparisons (#17).
+* Added global package options via `intrval_options()`.
+* The `"use_fpCompare"` option controls the use of fpCompare for
+  numeric-to-numeric comparisons, default is `TRUE`;
+  this is potentially a breaking change, use 
+  `intrval_options(use_fpCompare = FALSE)` for the mostly undesirable
+  base R behavior.
+
 # Version 0.1-3 -- May 19, 2024
 
 * Maintainer email changed to personal.

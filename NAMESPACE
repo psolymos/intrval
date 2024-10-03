@@ -11,6 +11,9 @@ export(
     "%()o[]%", "%()o[)%", "%()o(]%", "%()o()%",
     "%ni%", "%nin%", "%notin%",
     "%[c]%",  "%[c)%",  "%(c]%",   "%(c)%",
-    "intrval_types")
+    "intrval_types",
+    "intrval_options")
 
 importFrom("graphics", "lines", "par", "plot", "points", "text")
+# importFrom("fpCompare", "%>=%", "%>>%", "%<=%", "%<<%", "%==%", "%!=%")
+

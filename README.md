@@ -272,6 +272,34 @@ dt1 %[]o()% dt2
 # [1] 0 4 4 0 0
 ```
 
+### Floating point number comparisons
+
+The intrval package used [fpCompare](https://CRAN.R-project.org/package=fpCompare)
+to reliable numeric-to-numeric comparisons. The behavior can be turned off
+to use the less reliable base R implementation:
+
+```R
+x1 <- 0.5 - 0.3
+x2 <- 0.3 - 0.1
+
+op <- intrval_options(use_fpCompare = FALSE)
+
+## this is the base R behavior
+x1 %[]% c(0.2, 0.6)
+# [1] TRUE
+x2 %[]% c(0.2, 0.6)
+# [1] FALSE
+
+## reset defaults
+intrval_options(op)
+
+## using fpCompare
+x1 %[]% c(0.2, 0.6)
+# [1] TRUE
+x2 %[]% c(0.2, 0.6)
+# [1] TRUE
+```
+
 ### Truncated distributions
 
 ![](https://github.com/psolymos/intrval/raw/master/extras/dtrunc.png)
@@ -297,7 +325,6 @@ curve(dtrunc(x, distr="norm", lwr=-1, upr=1), add=TRUE, col=2, n=n)
 ```
 
 ### Shiny example 1: regular slider
-
 
 ![](https://github.com/psolymos/intrval/raw/master/extras/regular_slider.gif)
 

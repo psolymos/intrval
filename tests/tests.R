@@ -1,6 +1,7 @@
 #devtools::install_github("psolymos/intrval")
 
 library(intrval)
+library(fpCompare)
 
 ## run examples with \dontrun sections
 
