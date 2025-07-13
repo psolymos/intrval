@@ -2,8 +2,13 @@ Package: intrval
 Type: Package
 Title: Relational Operators for Intervals
 Version: 1.0-0
-Date: 2024-05-19
-Author: Peter Solymos [cre, aut] (<https://orcid.org/0000-0001-7337-1740>)
+Date: 2025-07-12
+Authors@R: 
+    c(person(given = "Peter",
+             family = "Solymos",
+             comment = c(ORCID = "0000-0001-7337-1740"),
+             role = c("aut", "cre"),
+             email = "psolymos@gmail.com"))
 Maintainer: Peter Solymos <psolymos@gmail.com>
 Description: Evaluating if values
   of vectors are within different open/closed intervals

@@ -7,6 +7,7 @@
   this is potentially a breaking change, use 
   `intrval_options(use_fpCompare = FALSE)` for the mostly undesirable
   base R behavior.
+* Use `Authors@R` field in `DESCRIPTION`.
 
 # Version 0.1-3 -- May 19, 2024
 
